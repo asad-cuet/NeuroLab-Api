@@ -1,0 +1,71 @@
+.role {
+  .role_table {
+    .table {
+      >thead {
+        border-bottom: transparent;
+
+        >tr {
+          text-transform: uppercase;
+          
+          font-size: 14px;
+
+          th {
+            @extend %py-15;
+            background: $gray-300;
+            color: $text-color;
+
+            &:first-child {
+              @extend %px-15;
+              border-top-left-radius: 10px;
+              border-bottom-left-radius: 10px;
+            }
+
+            &:nth-child(4) {
+              @extend %text-center;
+            }
+
+            &:last-child {
+              @extend %text-right,
+              %px-15;
+              border-top-right-radius: 10px;
+              border-bottom-right-radius: 10px;
+            }
+
+            @include breakpoint(max-md) {
+              font-size: 12px !important;
+              line-height: 18px !important;
+            }
+          }
+        }
+      }
+
+      tbody {
+        tr {
+          border-bottom: 1px solid rgb(224, 219, 219);
+
+
+          td {
+            height: 40px;
+            line-height: 40px;
+
+            @include breakpoint(max-md) {
+              font-size: 12px;
+              line-height: 24px !important;
+            }
+
+            &:nth-child(1) {
+              margin-inline-start: 10px;
+            }
+            &:nth-child(4) {
+              @extend %text-center;
+            }
+            .trk-action__list{
+               justify-content: end;
+            }
+
+          }
+        }
+      }
+    }
+  }
+}

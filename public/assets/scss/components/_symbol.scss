@@ -1,0 +1,49 @@
+// common classes
+.symbol-circle {
+    border-radius: 50%;
+}
+
+.symbol-square {
+    border-radius: 4px;
+}
+
+.symbol-group {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-left: 10px;
+}
+
+.symbol {
+  @extend %p-rel;
+  z-index: 0;
+  margin-left: -10px;
+  transition: all .3s ease;
+  overflow: hidden;
+  cursor: pointer;
+
+
+  .symbol-label {
+    @extend %d-flex,
+    %align-i-center,
+    %justify-center;
+    font-weight: 500;
+    color: var(--bs-symbol-label-color);
+    background-color: var(--bs-symbol-label-bg);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    height: 100%;
+    width: 100%;
+  }
+
+  &:hover{
+    transition: all .3s ease;
+    z-index: 1;
+  }
+}
+
+.symbol-50px {
+  width: 50px;
+  height: 50px;
+}

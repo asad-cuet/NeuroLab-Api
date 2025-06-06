@@ -1,0 +1,15 @@
+.rating {
+  @extend %flex,
+  %list-none,
+  %align-i-center,
+  %ps-0;
+  gap: 3px;
+
+  &__star {
+    i,
+    svg {
+      @include font-size(14px);
+      color: $brand-color;
+    }
+  }
+}

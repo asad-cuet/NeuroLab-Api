@@ -1,0 +1,354 @@
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the button component.
+// -----------------------------------------------------------------------------
+
+.btn {
+  @extend %d-inline-flex,
+  %align-i-center,
+  %of-hidden,
+  %text-center;
+  @include add-prefix(transition, $transition);
+  gap: 5px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  // padding-inline: 1.5rem;
+  // padding-block: .75rem;
+  font-weight: 500;
+  min-width: 90px;
+  text-decoration: none;
+  text-transform: capitalize;
+  cursor: pointer;
+  @include font-size(16px);
+  min-width: 90px;
+  justify-content: center;
+  text-wrap: nowrap;
+
+  padding: 0.65rem 1rem;
+
+  @include breakpoint(sm) {
+    padding-inline: 1.5rem;
+    padding-block: 0.75rem;
+  }
+
+
+  i,
+  svg {
+    @extend %me-5;
+    transition: $transition;
+  }
+
+
+  &.active,
+  &:focus-visible {
+    color: $white-color;
+  }
+
+  span {
+    color: inherit;
+    font-weight: inherit;
+
+    i,
+    svg {
+      display: grid;
+      place-items: center;
+    }
+  }
+
+  &-exsm {
+    padding: 0.473rem 1rem;
+    @include font-size(16px);
+    line-height: 1.2;
+  }
+
+  &-sm {
+    padding: 0.625rem 1rem;
+    @include font-size(16px);
+    line-height: 1.2;
+
+    // padding: 0.45rem 0.75rem;
+    // @include font-size(14px);
+    
+    // @include breakpoint(md) {
+    //   padding: 0.625rem 1rem;
+    //   @include font-size(16px);
+    // }
+  }
+
+  &-primary {
+    background-color: $brand-color;
+    color: $white-color;
+  }
+
+  &-secondary {
+    background-color: $secondary-color;
+    color: $white-color;
+  }
+
+  &-tertiary {
+    background-color: $tertiary-color;
+    color: $white-color;
+  }
+
+  &-danger {
+    background-color: $danger;
+    color: $white-color;
+  }
+
+  &-success {
+    background-color: $success;
+    color: $white-color;
+  }
+
+  &-warning {
+    background-color: $warning;
+    color: $white-color;
+  }
+
+  &-info {
+    background-color: $info;
+    color: $white-color;
+  }
+
+  &-light {
+    background-color: $bg-color;
+    color: $title-color;
+  }
+
+  &-light2 {
+    background-color: $white-color;
+    color: $brand-color;
+  }
+
+  &-light3 {
+    background-color: $bg-color-2;
+    color: $title-color;
+  }
+
+  &-outline {
+    background-color: transparent;
+    color: $brand-color;
+    border: 1px solid $brand-color;
+  }
+
+  &-outline2 {
+    background-color: transparent;
+    color: $title-color;
+    border: 1px solid $border-color;
+  }
+
+  &-outline3 {
+    background-color: transparent;
+    color: $title-color;
+    border: 1px solid $title-color;
+  }
+
+  &.disabled {
+    cursor: not-allowed;
+    opacity: 1;
+    pointer-events: none;
+    // background-color: $bg-color;
+    background-color: $text-color-muted;
+    color: $white-color;
+    border-color: $text-color-muted;
+  }
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+    pointer-events: none;
+    // background-color: $bg-color;
+    background-color: $text-color-muted;
+    color: $white-color;
+    border-color: $border-color;
+  }
+
+  &--add-item {
+    border: 1px dashed $tertiary-color;
+    color: $tertiary-color;
+  }
+
+
+  &:hover {
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+
+    &.btn-primary {
+      background-color: darken($brand-color, 6%);
+      color: $white-color;
+    }
+
+    &.btn-secondary {
+      background-color: darken($secondary-color, 6%);
+      color: $white-color;
+    }
+
+    &.btn-tertiary {
+      background-color: darken($tertiary-color, 6%);
+      color: $white-color;
+    }
+    &.btn-danger {
+      background-color: darken($danger, 6%);
+      color: $white-color;
+    }
+
+    &.btn-success {
+      background-color: darken($success, 6%);
+      color: $white-color;
+    }
+
+    &.btn-warning {
+      background-color: darken($warning, 6%);
+      color: $white-color;
+    }
+
+    &.btn-info {
+      background-color: darken($info, 6%);
+      color: $white-color;
+    }
+
+    &.btn--add-item {
+      border-color: darken($brand-color, 6%);
+      color: $brand-color;
+    }
+
+    &.btn-light {
+      box-shadow: none;
+      background-color: darken($bg-color, 6%);
+      border-color: darken($bg-color, 6%);
+      color: $title-color;
+    }
+
+    &.btn-light2 {
+      background-color: lighten($white-color, 6%);
+      color: $brand-color;
+    }
+
+    &.btn-light3 {
+      background-color: lighten($bg-color-2, 6%);
+      color: $title-color;
+    }
+    &.btn-outline {
+      background-color: $brand-color;
+      color: $white-color;
+      border-color: $brand-color;
+    }
+    &.btn-outline2 {
+      background-color: transparent;
+      color: $title-color;
+      border-color: $title-color;
+    }
+    &.btn-outline3 {
+      background-color: $tertiary-color;
+      color: $white-color;
+      border-color: $tertiary-color;
+    }
+  }
+
+
+  &--border {
+    border-radius: 0.75rem;
+    background-color: $secondary-color;
+    color: $white-color;
+
+    &:hover {
+      background-color: $brand-color;
+    }
+  }
+
+
+  &--outlined-secondary {
+    border-color: rgba($white-color, $alpha: .5);
+    background-color: transparent;
+    color: $white-color;
+
+    &:hover {
+      background-color: $white-color;
+      color: $brand-color;
+    }
+  }
+
+
+}
+
+.text-btn {
+  @include add-prefix(transition, $transition);
+  @extend %align-i-center;
+  display: inline-flex;
+  font-weight: 700;
+  // color: $title-color;
+
+  &--small {
+    @extend %text-regular;
+    @include font-size(16px);
+
+    span {
+      @extend %me-10;
+      @include add-prefix(transition, $transition);
+    }
+  }
+
+  &--primary {
+    color: $brand-color;
+  }
+
+  &--underline {
+    text-decoration: underline;
+  }
+
+  span {
+    @extend %ms-10;
+    @include add-prefix(transition, $transition);
+  }
+
+  &:hover {
+    &.text-btn--primary {
+      color: $title-color;
+    }
+
+    span {
+      @include add-prefix(transform, translateX(5px));
+    }
+  }
+}
+
+
+
+
+.d-block {
+  width: 100%;
+}
+
+
+.btn-group {
+  @extend %flex,
+  %align-i-center;
+  gap: 1rem;
+
+  &--gap-xs {
+    gap: .75rem;
+  }
+
+  &--gap-sm {
+    gap: 1rem;
+  }
+
+  &--gap-md {
+    gap: 1.5rem;
+  }
+
+  &--gap-lg {
+    gap: 2rem;
+  }
+}
+
+
+.btn-close {
+  &:focus {
+    box-shadow: none;
+  }
+}
+
+.btn-outline-table {
+  border: 1px solid $primary !important;
+  padding: .8rem;
+  color: $primary;
+}

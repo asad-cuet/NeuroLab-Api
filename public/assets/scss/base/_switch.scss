@@ -1,0 +1,249 @@
+// switch ============================================
+.switch {
+  @extend %d-flex, %align-i-center, %p-rel;
+  font-size        : 1rem;
+
+  label {
+    margin: 0;
+  }
+
+  input:empty {
+    @extend %of-hidden, %p-abs;
+    margin-left: -999px;
+    height     : 0;
+    width      : 0;
+    opacity    : 0;
+  }
+
+  input:empty~span {
+    @extend %d-inline-block, %p-rel;
+    width              : 1px;
+    text-indent        : 0;
+    cursor             : pointer;
+    -webkit-user-select: none;
+    -moz-user-select   : none;
+    -ms-user-select    : none;
+    user-select        : none;
+
+    &:before,
+    &:after {
+      @extend %p-abs, %d-flex, %align-i-center, %justify-center;
+      top               : 0;
+      bottom            : 0;
+      left              : 0;
+      content           : ' ';
+      -webkit-transition: all 100ms ease-in;
+      transition        : all 100ms ease-in;
+    }
+
+    &:before,
+    &:after {
+      @extend %p-abs, %d-flex, %align-i-center, %justify-center;
+      top               : 0;
+      bottom            : 0;
+      left              : 0;
+      content           : ' ';
+      -webkit-transition: all 100ms ease-in;
+      transition        : all 100ms ease-in;
+    }
+  }
+
+  input[disabled] {
+    cursor: not-allowed;
+
+    ~span {
+
+      &:after,
+      &:before {
+        cursor : not-allowed;
+        opacity: 0.5;
+      }
+    }
+  }
+
+  &.switch-icon {
+    input:checked~span:after {
+      line-height            : 1;
+      text-decoration        : inherit;
+      text-rendering         : optimizeLegibility;
+      text-transform         : none;
+      -moz-osx-font-smoothing: grayscale;
+      -webkit-font-smoothing : antialiased;
+      font-smoothing         : antialiased;
+      content                : "";
+      line-height            : 0;
+    }
+  }
+
+  input:empty~span {
+    height       : 30px;
+    width        : 57px;
+    border-radius: 15px;
+
+    &:before,
+    &:after {
+      width        : 54px;
+      border-radius: 15px;
+    }
+
+    &:after {
+      height        : 24px;
+      width         : 24px;
+      top           : 3px;
+      bottom        : 3px;
+      margin-left   : 3px;
+      font-size     : 0.65em;
+      text-align    : center;
+      vertical-align: middle;
+    }
+  }
+
+  input:checked~span:after {
+    margin-left: 26px;
+  }
+
+  &.switch-sm {
+    input:empty~span {
+      margin       : 2px 0;
+      height       : 24px;
+      width        : 40px;
+      border-radius: 12px;
+    }
+
+    input:empty~span:before,
+    input:empty~span:after {
+      width        : 38px;
+      border-radius: 12px;
+    }
+
+    input:empty~span:after {
+      height        : 20px;
+      width         : 20px;
+      top           : 2px;
+      bottom        : 2px;
+      margin-left   : 2px;
+      font-size     : 0.55em;
+      text-align    : center;
+      vertical-align: middle;
+    }
+
+    input:checked~span:after {
+      margin-left: 16px;
+    }
+  }
+
+  &.switch-lg {
+    input:empty~span {
+      margin       : 2px 0;
+      height       : 40px;
+      width        : 75px;
+      border-radius: 20px;
+    }
+
+    input:empty~span:before,
+    input:empty~span:after {
+      width        : 72px;
+      border-radius: 20px;
+    }
+
+    input:empty~span:after {
+      height        : 34px;
+      width         : 34px;
+      top           : 3px;
+      bottom        : 3px;
+      margin-left   : 3px;
+      font-size     : 0.75em;
+      text-align    : center;
+      vertical-align: middle;
+    }
+
+    input:checked~span:after {
+      margin-left: 34px;
+    }
+  }
+
+
+
+
+  // .switch {
+  //   position: relative;
+  //   display : inline-block;
+  //   width   : 36px;
+  //   height  : 20px;
+  //   margin  : 0 10px;
+  // }
+
+  input {
+    opacity: 0;
+    width  : 0;
+    height : 0;
+  }
+
+  span {
+    @extend %p-abs, %d-block;
+    cursor            : pointer;
+    border-radius     : 20px;
+    top               : 0;
+    left              : 0;
+    right             : 0;
+    bottom            : 0;
+    -webkit-transition: 0.4s;
+    transition        : 0.4s;
+  }
+
+  /* Default state */
+  input:empty~span:before {
+    background-color: #EBEDF3;
+  }
+
+  input:empty~span:after {
+    background-color: #ffffff;
+    opacity         : 0.7;
+  }
+
+  input:checked~span:before {
+    background-color: #EBEDF3;
+  }
+
+  input:checked~span:after {
+    opacity         : 1;
+    color           : #ffffff;
+    background-color: #3699FF;
+  }
+}
+  
+
+
+
+
+  .switch-primary {
+  @include switch(#3699FF, #ffffff, #3699FF, #3699FF, #EBEDF3, #EBEDF3);
+}
+.switch-secondary {
+  @include switch(#E4E6EF, #ffffff, #E4E6EF, #E4E6EF, #EBEDF3, #EBEDF3);
+}
+
+.switch-success {
+  @include switch(#1BC5BD, #ffffff, #1BC5BD, #1BC5BD, #EBEDF3, #EBEDF3);
+}
+
+.switch-info {
+  @include switch(#8950FC, #ffffff, #8950FC, #8950FC, #EBEDF3, #EBEDF3);
+}
+
+.switch-warning {
+  @include switch(#FFA800, #ffffff, #FFA800, #FFA800, #EBEDF3, #EBEDF3);
+}
+.switch-danger {
+  @include switch(#FF4136, #ffffff, #FF4136, #FF4136, #EBEDF3, #EBEDF3);
+}
+
+// Dark color scheme
+.switch-dark {
+  @include switch(#FF4136, #ffffff, #FF4136, #FF4136, #EBEDF3, #EBEDF3);
+}
+
+// Light color scheme
+.switch-light {
+  @include switch(#ffffff, #FF4136, #FF4136, #FF4136, #EBEDF3, #EBEDF3);
+}

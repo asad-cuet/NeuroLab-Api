@@ -1,0 +1,761 @@
+.nav-item {
+  color: $white-color;
+
+  &:hover,
+  &:focus {
+    color: $white-color;
+  }
+}
+
+.nav-tabs {
+  border-bottom: 0;
+
+  .nav-link {
+
+    &.active {
+      color: $white-color;
+      background-color: $brand-color;
+      border-color: $brand-color;
+    }
+  }
+
+}
+
+
+
+
+// lavel
+.label {
+  @extend %px-5;
+  @include font-size(12px);
+  padding-block: 2px;
+  color: $white-color;
+
+  &.label-rounded {
+    border-radius: 5px;
+  }
+
+  &.label-success {
+    background-color: rgba($success, $alpha: .2);
+    color: $success;
+  }
+
+  &.label-info {
+    background-color: rgba($info, $alpha: .2);
+    color: $info;
+  }
+
+  &.label-danger {
+    background-color: rgba($danger, $alpha: .2);
+    color: $danger;
+  }
+
+  &.label-warning {
+    background-color: rgba($warning, $alpha: .2);
+    color: $warning;
+  }
+
+  &.label-light {
+    background-color: $light;
+  }
+
+  &.label-dark {
+    background-color: $dark;
+  }
+}
+
+// badge
+.badge {
+  @extend %px-5;
+  @include font-size(14px);
+  // padding-block: 3px;
+  font-weight: 500;
+
+  &.badge-primary {
+    background-color: rgba($primary, $alpha: .12);
+    color: $primary;
+  }
+
+  &.badge-outline {
+    color: $primary;
+    @include font-size(16px);
+    padding: 8px 10px;
+    border: 1px solid $primary;
+    border-radius: 5px;
+  }
+
+  &.badge-outline-secondary {
+    color: $secondary;
+    @include font-size(16px);
+    padding: 8px 10px;
+    border: 1px solid $secondary;
+    border-radius: 5px;
+  }
+
+  &.badge-success {
+    background-color: rgba($success, $alpha: .12);
+    color: $success;
+  }
+
+  &.badge-info {
+    background-color: rgba($info, $alpha: .12);
+    color: $info;
+  }
+
+  &.badge-danger {
+    background-color: rgba($danger, $alpha: .12);
+    color: $danger;
+  }
+
+  &.badge-warning {
+    background-color: rgba($warning, $alpha: .12);
+    color: $warning;
+  }
+
+  &.badge-light {
+    background-color: rgba($light, $alpha: .12);
+    color: $light;
+  }
+
+  &.badge-dark {
+    background-color: rgba($dark, $alpha: .12);
+    color: $dark;
+  }
+}
+
+//bullet point
+
+.bullet {
+  @extend %d-inline-block;
+  @include box(4px);
+  border-radius: 1px;
+  background-color: initial;
+
+  &.bullet-success {
+    background-color: $success;
+  }
+
+  &.bullet-primary {
+    background-color: $primary;
+  }
+
+  &.bullet-warning {
+    background-color: $warning;
+  }
+
+  &.bullet-danger {
+    background-color: $danger;
+  }
+
+  &.bullet-disable {
+    background-color: $light;
+  }
+}
+
+// modal
+.modal {
+  z-index: 999999 !important;
+
+  &-content {
+    background-color: $white-color;
+  }
+
+  &-header {
+    padding: 24px;
+  }
+
+  &-body {
+    padding: 24px;
+
+    &__thumb {
+      img {
+        border-radius: 8px;
+      }
+    }
+  }
+}
+
+.modal-backdrop {
+  z-index: 999998 !important;
+}
+
+// multi-select option
+.ts-wrapper.multi.has-items .ts-control {
+  padding: calc(.75rem - 1px) 1.125rem calc(.75rem - 4px);
+}
+
+.ts-wrapper {
+  .ts-control {
+    box-shadow: none;
+
+    &:focus {
+      border-color: rgba(109, 113, 250, 0.5);
+    }
+  }
+}
+
+
+// radio
+.option {
+  p {
+    font-size: 18px;
+    font-weight: 500;
+  }
+
+  &__inner {
+    display: flex;
+    gap: 15px;
+  }
+}
+
+
+// personal-info
+.personal-info {
+  &__item {
+    @extend %pb-10,
+    %mb-15;
+
+    &:not(:last-child) {
+      border-bottom: 1px solid rgba($border-color, $alpha: .5);
+    }
+
+    &-title {
+      @extend %text-medium;
+      min-width: 100px;
+
+      @include breakpoint(sm) {
+        min-width: 150px;
+
+      }
+
+      @include breakpoint(md) {
+        min-width: 90px;
+      }
+
+      @include breakpoint(lg) {
+        min-width: 150px;
+
+      }
+    }
+
+  }
+}
+
+// crud view
+.crud-view {
+
+  &__item {
+    @extend %flex;
+
+    &:not(:last-child) {
+      padding-block-end: 10px;
+      margin-block-end: 15px;
+      ;
+      border-bottom: 1px solid rgba($border-color, $alpha: .5);
+    }
+
+    &-title {
+      @extend %text-medium;
+      flex: 1;
+      min-width: 100px;
+      max-width: 50%;
+
+      @include breakpoint(sm) {
+        min-width: 150px;
+
+      }
+
+      @include breakpoint(md) {
+        min-width: 90px;
+      }
+
+      @include breakpoint(lg) {
+        min-width: 150px;
+
+      }
+    }
+
+    &-content {
+      flex: 2;
+    }
+
+  }
+
+  &--style2 {
+    .crud-view {
+      &__item {
+        &:not(:last-child) {
+          margin-block-end: 15px;
+          border-bottom: 0;
+        }
+      }
+    }
+  }
+}
+
+
+.admin-item {
+  padding: 0.75rem 1.125rem;
+}
+
+
+// bullet
+.bullet {
+  width: 4px;
+  border-radius: 4px;
+}
+
+
+// common actions 
+.action {
+  display: flex;
+  position: relative;
+
+  button {
+    width: auto;
+  }
+
+  .dropdown-toggle {
+
+    @extend %d-grid,
+    %place-i-center,
+    %p-rel;
+    border: 1px solid $border-color;
+    background: rgba($brand-color, 0.2);
+    border-radius: 8px;
+
+    &:not(.author-toggle) {
+      @include box(35px);
+    }
+
+    &::after {
+      display: none;
+    }
+
+    & span {
+      @extend %p-abs,
+      %d-grid,
+      %place-i-center;
+      @include box(16px);
+      @include font-size(10px);
+      background: $primary;
+      color: $white;
+      border-radius: 50%;
+      top: -8px;
+      right: -6px;
+      font-weight: 500;
+    }
+
+    &.flag-toggle {
+      background-color: transparent;
+      border: none;
+      padding: 2px;
+    }
+
+    @include breakpoint(md) {
+      & span {
+        @include box(20px);
+        @include font-size(12px);
+      }
+    }
+
+    @include breakpoint(lg) {
+      @include box(46px);
+    }
+
+  }
+
+  .dropdown-menu {
+    @extend %p-abs,
+    %p-10;
+    @include add-prefix(transition, $transition);
+    border: 1px solid $border-color;
+    border-radius: 8px;
+    box-shadow: 0 5px 10px rgba($brand-color, $alpha: .1);
+    background-color: $white-color;
+    right: 0;
+    position: absolute;
+    top: 24px !important;
+    transform: translate3d(0px, 60px, 0px);
+    width: 240px;
+
+    @include breakpoint(md) {
+      width: 350px;
+    }
+
+    &.show {
+      position: absolute;
+      transform: translate(0px, 16px) !important;
+    }
+
+    li {
+      @include add-prefix(transition, $transition);
+      padding: 3px 0px;
+      position: relative;
+      z-index: 2;
+
+      a {
+        padding: 8px 12px;
+        display: flex;
+        color: $black-color;
+        border-radius: 6px;
+        font-size: 14px;
+        align-items: center;
+
+        i {
+          margin-right: 15px;
+          font-weight: 700;
+        }
+      }
+
+      &:hover {
+        a {
+          color: $primary;
+          background: rgba($primary, 0.05);
+        }
+      }
+
+    }
+  }
+
+  &__info {
+    &--horizontaldot {
+
+      i,
+      svg {
+        transform: rotate(90deg);
+      }
+    }
+  }
+
+}
+
+
+//remove btn
+.close-btn {
+  position: absolute;
+  top: -0.6rem;
+  right: -0.6rem;
+  cursor: pointer;
+  width: 1.5rem;
+  height: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: $white-color;
+  border: 1px solid $danger;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  transition: $transition;
+
+  i,
+  svg {
+    @include font-size(16px);
+    color: $danger;
+  }
+
+  &:hover {
+    background-color: $danger;
+    border-color: $danger;
+
+    i,
+    svg {
+      color: $white-color;
+    }
+  }
+}
+
+
+
+// duration filter style
+.duration-filter {
+  @extend %d-flex;
+  border: 1px solid $border-color;
+  border-radius: 8px;
+
+  @include breakpoint(sm) {
+    min-width: 300px;
+  }
+
+  select {
+    border: none;
+    outline: none;
+    max-width: 150px;
+    cursor: pointer;
+  }
+
+  span {
+    @extend %d-flex,
+    %align-i-center;
+    color: $text-color-muted;
+  }
+
+  input {
+    border: none;
+    outline: none;
+  }
+}
+
+.user-chart {
+  max-width: 200px;
+
+  svg {
+    .apexcharts-inner {
+      transform: translate(0px, 0px);
+    }
+  }
+}
+
+
+.custom-calendar {
+
+  .flatpickr-calendar {
+    border: none;
+    box-shadow: none !important;
+    width: 100%;
+  }
+
+  .flatpickr-innerContainer {
+    display: block;
+    margin-block-start: 20px;
+  }
+
+  .flatpickr-day.selected {
+    background-color: $brand-color;
+    ;
+    color: $white-color;
+  }
+
+  .flatpickr-day:hover {
+    background-color: $brand-color;
+    color: $white-color;
+    border-color: $brand-color;
+  }
+
+  .flatpickr-day.today {
+    border: 2px solid $brand-color;
+    ;
+    color: $white-color;
+    ;
+  }
+}
+
+.flatpickr-calendar.open {
+  display: inline-block;
+  z-index: 9999999;
+}
+
+.content-list {
+  &__item {
+    @extend %d-flex,
+    %justify-between;
+    gap: 15px;
+    flex-wrap: wrap;
+    padding: 12px 0;
+
+
+    &:last-child {
+      padding-block-end: 0;
+    }
+
+    &:first-child {
+      padding-block-start: 0;
+    }
+
+    &:not(:last-child) {
+      border-bottom: 1px solid $border-color-2;
+    }
+
+    &-info {
+      @extend %d-flex;
+      gap: 10px;
+      @include font-size(18px);
+      color: $title-color;
+      flex: 1;
+
+      p {
+        margin-block-end: 0;
+      }
+    }
+  }
+}
+
+
+// modal
+.modal-body {
+  max-height: 70vh;
+  overflow-y: auto;
+
+  scrollbar-width: thin;
+  scrollbar-color: $tertiary-color $white;
+
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $tertiary-color;
+    border-radius: 4px;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: lighten($tertiary-color, 10%);
+  }
+
+  &::-webkit-scrollbar-track {
+    background: $body-color;
+    border-radius: 4px;
+  }
+}
+
+
+
+
+// device list style
+.device-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  &__item {
+    @extend %d-flex,
+    %align-i-center,
+    %justify-between,
+    %text-medium;
+    @include font-size(18px);
+    gap: 24px;
+
+    &:not(:last-child) {
+      margin-block-end: 16px;
+    }
+
+    &-color {
+      width: 12px;
+      height: 12px;
+      display: inline-block;
+      border-radius: 50%;
+      margin-right: 8px;
+    }
+
+    &-value {
+      @extend %text-semibold;
+      color: $text-color-muted;
+    }
+
+    &-percentage {
+      @extend %text-medium;
+      color: $success-color;
+      margin-left: 4px;
+    }
+
+    // Specific device colors using BEM
+    &.desktop .device-list__item-color {
+      background-color: #d500f9;
+    }
+
+    &.tablet .device-list__item-color {
+      background-color: $info-color;
+    }
+
+    &.mobile .device-list__item-color {
+      background-color: $secondary-color;
+    }
+
+    &.other .device-list__item-color {
+      background-color: $brand-color;
+    }
+  }
+}
+
+
+
+// search items
+.search-item {
+  @extend %p-rel;
+
+  i,
+  svg {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 15px;
+  }
+}
+
+// view-list
+.view-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+
+  @include breakpoint(md) {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  &--style2 {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+
+    .view-list{
+      &__item{
+        @extend %d-flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        &:not(:last-child) {
+          padding-block-end: 24px;
+          border-bottom: 1px solid $border-color-2;
+        }
+
+        &-title{
+          @extend %text-medium;
+          @include font-size(16px);
+          margin-block-end: 0;
+          min-width: 150px;
+        }
+
+        &-info{
+          margin-block-end: 0;
+          @include breakpoint(sm){
+            flex: 1;
+          }
+        }
+      }
+    }
+  }
+
+}
+
+.view-list-image {
+  img {
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    object-position: center;
+    max-width: 200px;
+    border-radius: 12px;
+  }
+}
+
+
+// body scroll bar
+body {
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $brand-color;
+    border-radius: 2px;
+    cursor: pointer;
+  }
+
+}
+
+@supports not (scrollbar-width: none) {
+  body {
+    scrollbar-color: $brand-color;
+  }
+}

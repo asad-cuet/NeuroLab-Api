@@ -1,0 +1,58 @@
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the footer of the site/application.
+// -----------------------------------------------------------------------------
+.footer {
+
+  &__content {
+    @extend %text-center;
+    max-inline-size: 500px;
+    margin-inline: auto;
+
+    &-social {
+      >p {
+        @extend %mb-25;
+      }
+    }
+  }
+
+  &__links {
+    @extend %flex,
+    %align-i-center,
+    %justify-center,
+    %ps-0,
+    %mb-50,
+    %p-rel;
+    gap: 15px;
+
+    &:after {
+      @extend %p-abs;
+      width: 200px;
+      height: 2px;
+      @include add-prefix(transform, translateX(-50%));
+      background: radial-gradient(circle, rgba($secondary-color, 1) 0%, rgba(255, 255, 255, 0) 100%);
+      left: 50%;
+      bottom: -30px;
+
+    }
+
+    @include breakpoint(md) {
+      gap: 30px;
+    }
+
+    &-item {
+      a {
+        @include font-size(18px);
+        font-weight: 500;
+      }
+    }
+  }
+
+  &__logo {
+    @extend %d-inline-block,
+    %mb-25;
+  }
+
+  .social {
+    @extend %justify-center;
+  }
+}

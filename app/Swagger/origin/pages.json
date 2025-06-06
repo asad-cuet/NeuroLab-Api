@@ -1,0 +1,50 @@
+{
+    "\/api\/v1\/pages": {
+        "get": {
+            "tags": [
+                "pages"
+            ],
+            "summary": "Get All Page",
+            "description": "Retrieve a list of all page",
+            "parameters": [],
+            "responses": {
+                "200": {
+                    "description": "Successful operation"
+                },
+                "400": {
+                    "description": "Invalid status value"
+                }
+            },
+            "security": []
+        }
+    },
+    "\/api\/v1\/pages\/{id}": {
+        "get": {
+            "tags": [
+                "pages"
+            ],
+            "summary": "Get Page details",
+            "description": "Retrieve details of page",
+            "parameters": [
+                {
+                    "name": "id",
+                    "in": "path",
+                    "description": "ID of the PageBuilder",
+                    "required": true,
+                    "schema": {
+                        "type": "integer"
+                    }
+                }
+            ],
+            "responses": {
+                "200": {
+                    "description": "Successful operation"
+                },
+                "400": {
+                    "description": "Invalid status value"
+                }
+            },
+            "security": []
+        }
+    }
+}

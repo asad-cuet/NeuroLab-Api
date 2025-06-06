@@ -1,0 +1,23 @@
+.about {
+  &__content {
+    h4 {
+      @extend %mb-20;
+    }
+
+    p {
+      @include font-size(18px);
+    }
+  }
+
+  &__list {
+    &-item {
+      &::before {
+        content: '0';
+      }
+
+      @include font-size(18px);
+      color:$title-color;
+      font-weight: 500;
+    }
+  }
+}

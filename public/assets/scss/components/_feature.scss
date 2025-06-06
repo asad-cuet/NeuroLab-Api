@@ -1,0 +1,59 @@
+.feature {
+  &__nav {
+    .nav {
+      gap: 20px;
+    }
+
+    .nav-link {
+      cursor: pointer;
+      background-color: rgba($secondary-color, $alpha: .03);
+      padding: 1rem;
+
+      &.active {
+        background-color: rgba($secondary-color, $alpha: .20);
+
+        &:hover {
+          background-color: rgba($secondary-color, $alpha: .20);
+
+        }
+      }
+
+      &:hover {
+        background-color: rgba($secondary-color, $alpha: .06);
+      }
+    }
+  }
+
+
+  &__item {
+    &-inner {
+      @extend %flex;
+      gap: 20px;
+    }
+
+    &-icon {
+      @include box(60px);
+    }
+
+    &-content {
+      @extend %text-left;
+      flex: 1;
+
+      h4 {
+        @extend %mb-10;
+        font-weight: 500;
+      }
+
+      p {
+        @extend %mb-0;
+        color: $body-color;
+      }
+    }
+  }
+
+  &__content {
+    @include breakpoint(lg) {
+      padding-inline-start: 2rem;
+    }
+  }
+}

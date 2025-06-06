@@ -1,0 +1,30 @@
+.step {
+  &__item {
+    &-inner {
+      @include add-prefix(transition, $transition);
+      padding: 1.5rem 1.25rem;
+      border-radius: .5rem;
+      box-shadow: 0 0 15px -5px rgba($brand-color, $alpha: .40);
+
+      &:hover {
+        border-color: $brand-color;
+      }
+    }
+
+    &-icon {
+      @extend %mb-20;
+      max-inline-size: 70px;
+    }
+
+    &-content {
+      h3 {
+        @extend %mb-25;
+        color: $brand-color;
+      }
+
+      p {
+        @extend %mb-0
+      }
+    }
+  }
+}

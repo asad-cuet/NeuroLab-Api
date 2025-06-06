@@ -1,0 +1,139 @@
+body.dark {
+  background-color: #292c35;
+}
+
+.permissions {
+  .role_table {
+    .table {
+      >thead {
+        background: $white-color;
+        color: $gray-600;
+        border-bottom: 1px solid $white-color;
+
+        >tr {
+          text-transform: uppercase;
+          font-size: 14px;
+
+          th {
+            text-transform: capitalize;
+
+            @include breakpoint(max-md) {
+              font-size: 12px !important;
+              line-height: 18px !important;
+            }
+          }
+        }
+      }
+
+      tbody {
+        tr {
+          td {
+            &:last-child {
+              @extend %text-end;
+            }
+          }
+        }
+
+        td {
+          label {
+            display: inline-block;
+            height: 34px;
+            position: relative;
+            width: 60px;
+            margin: 0;
+
+            input {
+              display: none;
+            }
+
+            .round {
+              background-color: $bg-color;
+              bottom: 0;
+              cursor: pointer;
+              left: 0;
+              position: absolute;
+              border-radius: 34px;
+              right: 0;
+              top: 0;
+              transition: .4s;
+
+              &::before {
+                background-color: $white-color;
+                bottom: 4px;
+                content: "";
+                height: 26px;
+                left: 4px;
+                position: absolute;
+                transition: .4s;
+                width: 26px;
+                border-radius: 34px;
+              }
+            }
+          }
+
+          .easey_class {
+
+            input.switch {
+              position: relative;
+              appearance: none;
+              -moz-appearance: none;
+              -webkit-appearance: none;
+              width: 52px !important;
+              height: 28px;
+              border-radius: 30px;
+              cursor: pointer;
+              background-color: $bg-color;
+              transition: box-shadow 0.3s ease-in-out, padding 0.25s ease-in-out;
+              transition-delay: 0.1s, 0s;
+              transform: translateY(7px);
+
+            }
+
+            input.switch:focus {
+              border: 0;
+              outline: 0;
+            }
+
+            input.switch:checked {
+              transition-delay: 0s, 0s;
+              box-shadow: inset 0 0 0 2.62857em $brand-color !important;
+              padding-left: 25px;
+            }
+
+            input.switch:before {
+              display: inline-block;
+              height: 20px;
+              width: 20px;
+              margin: 3px;
+              background-color: $white-color;
+              border-radius: 2.1em;
+              transition: all 0.1s ease 0.1s;
+              transform: translateY(1px);
+            }
+
+            input.switch:before,
+            input.switch:after {
+              content: "";
+              display: block;
+            }
+
+            input.switch:active::before {
+              transition: all 0.1s ease 0.05s;
+            }
+
+          }
+
+
+        }
+      }
+
+
+    }
+  }
+}
+
+
+.permissions .role_table .table tbody td .easey_class .dark-light .slider.round:checked:before {
+  border-radius: 50%;
+  transform: translateX(100%);
+}

@@ -1,0 +1,196 @@
+//*-----------------------------------
+//*** Custom variables for this template
+//*-----------------------------------
+
+
+// ------> Brand Colors <------
+$brand-color: #d02128; // Main brand color
+$secondary-color: #0B1531; // Secondary brand color
+$tertiary-color: #001846; // Tertiary brand color
+
+
+
+// ------> Typography Colors <------
+$title-color: #1B2559; // Title color
+$title-color-2: #1B2559; // Alternate Title color
+$title-color-muted: #7B829D; // Muted title color
+
+$text-color: #344054; // Main text color
+$text-color-2: #344054; // Alternate text color
+$text-color-muted: #7B829D; // Muted text color 
+
+$link-color: #1A73E8; // Link color
+
+
+
+// ------> Background Colors <------
+$bg-color: #f4f7fe;// Main background
+$bg-color-2: #f9f9f9; // Additional background option
+
+
+// ------> Foreground Colors <------
+$fg-color: #FFFFFF; // Main foreground for surfaces
+$fg-color-2: #344054; // Additional foreground option
+
+
+
+// ------> Border Colors <------
+$border-color: #CED5E0; // Standard border color
+$border-color-2: #E8ECFC; // Light border for subtle outlines
+
+
+// ------> State Colors <------
+$success-color: #198754; // Success state color
+$info-color: #0DCAF0; // Info state color
+$warning-color: #FFC107; // Warning state color
+$danger-color: #DC3545; // Error state color
+$neutral-color: #E0E0E0; // Neutral state for disabled elements
+
+
+
+// ------> Social Media Colors <------
+$facebook-color: #4267B2;
+$x-color: #1DA1F2; // Formerly Twitter
+$youtube-color: #FF0000;
+$instagram-color: #E4405F;
+$linkedin-color: #0077B5;
+
+
+
+// ------> Common Colors <------
+$white-color: #FFFFFF; // Pure white
+$black-color: #000000; // Pure black
+$light-gray-color: #FAFAFA; // Light gray for backgrounds
+$dark-gray-color: #010101; // Dark gray for contrast
+
+
+
+
+
+
+/*====================<<Bootstrap Variables override start >>========================*/
+
+//primary colors:
+$primary: $brand-color;
+
+//Secondary colors:
+$secondary: $secondary-color;
+
+//Tertiary colors:
+$tertiary: $tertiary-color;
+
+
+// ------> State Colors <------
+$success: $success-color; // Success state color
+$info: $info-color; // Info state color
+$warning: $warning-color; // Warning state color
+$danger: $danger-color; // Error state color
+$neutral: $neutral-color; // Neutral state for disabled elements
+
+
+// Settings for the `<body>` element.
+$body-bg: #F4F7FE;
+$body-bg-dark: #0D0E11;
+$body-color: #344054 !default;
+$body-text-align: null !default;
+
+
+
+/*====================<<Bootstrap Variables override end >>========================*/
+
+
+
+
+//*-----------------------------------
+//*** Template Font 
+//*-----------------------------------
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+
+$title-font: 'Poppins',
+  sans-serif;
+  
+$text-font: 'Poppins',
+  sans-serif;
+
+
+//Template font sizes
+$fs-base: 16px !default;
+$fs-small: 14px;
+
+$fs-h1: 56px;
+$fs-h2: 48px;
+$fs-h3: 36px;
+$fs-h4: 26px;
+$fs-h5: 24px;
+$fs-h6: 20px;
+
+
+//Template transition
+$transition: all .3s ease-in-out;
+
+
+//width variables
+$sidenav-w: 280px;
+$sidenav-gap: 30px;
+$body-gap: 30px;
+
+
+
+
+
+//*-----------------------------------
+//*** custom styles
+//*-----------------------------------
+.report-item {
+  cursor: pointer;
+  border-bottom: 3px solid $border-color-2;
+  transition: border-color 0.3s ease;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &.active {
+    border-bottom: 3px solid #0d6efd; 
+  }
+}
+
+.sales {
+  &__item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+
+    &:not(:last-child) {
+      margin-block-end: 24px;
+    }
+
+    &-country {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+
+      img {
+        width: 40px;
+        height: 40px;
+        aspect-ratio: 1 / 1;
+        object-fit: cover;
+        object-position: center;
+      }
+    }
+
+    &-progress {
+      flex: 1;
+      height: 6px !important;
+
+    }
+
+    &-change {
+      text-align: right;
+    }
+  }
+}
+

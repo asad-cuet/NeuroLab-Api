@@ -1,0 +1,59 @@
+.cta {
+  &__wrapper {
+    padding: 40px;
+    border-radius: 1rem;
+    background-color: $brand-color;
+    background-image: url(../img/cta/bg.png);
+    background-size: cover;
+
+    @include breakpoint(md) {
+      padding: 60px;
+      border-radius: 1.5rem;
+    }
+
+    @include breakpoint(xl) {
+      padding: 80px;
+    }
+  }
+
+  .btn {
+    background-color: $white-color;
+    color: $brand-color;
+
+    &:hover {
+      color: $brand-color;
+    }
+  }
+
+  &__content {
+
+    h2,
+    p {
+      color: $white-color;
+    }
+
+    h2 {
+      @extend %mb-15;
+      max-inline-size: 18ch;
+
+      span {
+        color: $bg-color;
+      }
+    }
+
+    >p {
+      @extend %mb-30;
+    }
+
+  }
+
+  .form-control {
+    max-inline-size: 300px;
+    padding: 1.25rem;
+    border-radius: 99px;
+
+    &:focus {
+      box-shadow: none;
+    }
+  }
+}

@@ -1,0 +1,140 @@
+.testimonial {
+  &__item {
+    &-inner {
+      @extend %flex,
+      %align-i-center;
+      gap: 30px;
+    }
+
+    &-content {
+      flex: 1;
+
+      blockquote {
+        @extend %mt-40,
+        %p-rel;
+        @include font-size(22px);
+        max-inline-size: 60ch;
+        line-height: 1.65;
+
+        &::after {
+          @extend %p-abs;
+          @include font-size(40px);
+          content: "\eaf4";
+          font-family: 'lineicons'; 
+          font-weight: 900;
+          right: 0%;
+          bottom: -45%;
+          color: $brand-color;
+        }
+      }
+
+      .quote-icon {
+        text-align: right;
+        max-inline-size: 80%;
+
+        svg {
+          @include font-size(50px);
+        }
+      }
+    }
+
+    &-thumb {
+      @extend %p-rel,
+      %of-hidden;
+      border-radius: 1.5rem;
+
+      width: 300px;
+      height: 450px;
+
+      img {
+        @extend %w-100,
+        %h-100;
+        object-fit: cover;
+      }
+
+      &::after {
+        @extend %p-abs,
+        %w-100,
+        %h-100;
+        background-color: rgba($color: $black, $alpha: .7);
+        top: 0;
+        left: 0;
+
+      }
+    }
+
+    &-video {
+      @extend %p-abs,
+      %flex,
+      %align-i-center;
+      flex-direction: column;
+      @include add-prefix(transform, translate(-50%, -50%));
+      left: 50%;
+      top: 50%;
+      z-index: 1;
+    }
+
+    &-play {
+      @include font-size(50px);
+      color: $white-color;
+    }
+
+    &-videotext {
+      @extend %text-center;
+      color: $white-color;
+
+      span {
+        color: $brand-color;
+      }
+    }
+  }
+
+  &__author {
+    &--card {
+      @extend %p-20,
+      %c-pointer;
+      @include add-prefix(transition, $transition);
+      border-radius: .5rem;
+
+
+      &:hover {
+        background-color: rgba($brand-color, $alpha: .2);
+      }
+    }
+
+
+    h4,
+    p,
+    h5 {
+      @extend %mb-0;
+    }
+
+    .rating {
+      @extend %mt-10;
+    }
+
+    &-inner {
+      @extend %flex;
+      gap: 15px;
+    }
+
+    &-thumb {
+      @extend %of-hidden;
+      @include box(80px);
+      border-radius: .75rem;
+    }
+  }
+
+  &__slider {
+    &-bottom {
+      max-height: 450px;
+    }
+  }
+
+  .swiper-slide-thumb-active {
+    .testimonial__author--card {
+      background-color: $brand-color;
+      box-shadow: 0 0 5px 0 rgba($secondary-color, $alpha: .1);
+    }
+  }
+}

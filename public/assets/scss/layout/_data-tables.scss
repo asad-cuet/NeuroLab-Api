@@ -1,0 +1,435 @@
+.trk-table {
+  &__wrapper {
+    background-color: $white-color;
+    border-radius: .75rem;
+    box-shadow: 0 0 15px 0 rgba($black-color, $alpha: .03);
+
+  }
+
+  &__header {
+    border-bottom: 1px solid rgba($black-color, $alpha: .10);
+    padding: 20px 30px;
+
+    @extend %d-flex,
+    %align-i-center,
+    %justify-between;
+    flex-wrap: wrap;
+    gap: 20px;
+
+  }
+
+  &__title {
+    h5 {
+      @extend %mb-5;
+      font-weight: 600;
+    }
+
+    p {
+      @extend %mb-0;
+      @include font-size(14px);
+    }
+  }
+
+  &__body {
+    @extend %p-30;
+
+    .datatable-top {
+      @extend %mb-20;
+      padding: 8px 0;
+
+    }
+
+  }
+
+  .table {
+    border-radius: .75rem;
+    overflow: hidden;
+    font-size: 14px;
+
+    thead {
+      tr {
+        >th {
+          // background-color: rgba($brand-color, $alpha: .2);
+          background-color: $bg-color;
+          border-bottom: none;
+          color: rgba($title-color, $alpha: .7);
+
+          .datatable-sorter {
+            background-color: transparent;
+          }
+        }
+
+        td {
+          border-bottom: none !important;
+        }
+      }
+    }
+
+  }
+
+  &--border {
+
+    .table,
+    .datatable-table {
+      border: 1px solid $border-color-2;
+      border-radius: 12px;
+    }
+
+    .datatable-wrapper.no-footer .datatable-container {
+      border-bottom: 0;
+    }
+  }
+
+  &--white{
+    .table{
+      thead {
+        tr{
+          th{
+            background-color: $white-color !important;
+          }
+        }
+      }
+    }
+  }
+
+
+}
+
+
+// default actions list for tables
+
+.trk-action {
+  &__list {
+    @extend %flex,
+    %align-i-center,
+    %mb-0;
+    gap: 8px;
+
+  }
+
+  &__item {
+    @extend %d-inline-grid,
+    %place-i-center;
+    @include box(calc(30px + .25em));
+    border-radius: .5rem;
+
+    .trk-icon {
+
+      i,
+      svg {
+        transition: $transition;
+      }
+    }
+
+
+    &--success {
+      background-color: rgba($bg-color, $alpha: .95);
+      color: $text-color;
+      transition: $transition;
+
+      &:hover,
+      &:active {
+        background-color: $success-color;
+        color: $white-color;
+
+        .trk-icon {
+
+          i,
+          svg {
+            color: $success-color;
+          }
+        }
+      }
+    }
+
+    &--warning {
+      background-color: rgba($warning, $alpha: .20);
+      color: $text-color;
+      transition: $transition;
+
+      &:hover,
+      &:active {
+        background-color: $warning;
+        color: $text-color;
+
+        .trk-icon {
+
+          i,
+          svg {
+            color: $warning;
+          }
+        }
+      }
+    }
+
+    &--danger {
+      background-color: rgba($danger, $alpha: .10);
+      color: $danger;
+      transition: $transition;
+
+      &:hover,
+      &:active {
+        background-color: $danger;
+        color: $white-color;
+
+        .trk-icon {
+
+          i,
+          svg {
+            color: $danger;
+          }
+        }
+      }
+    }
+  }
+
+  &--style2 {
+    .trk-action {
+      &__item {
+        @include box(calc(25px + .25em));
+        background-color: transparent;
+        @include font-size(22px);
+        color: $title-color;
+        transition: $transition;
+
+        &--success {
+          &:hover {
+            color: $success;
+          }
+        }
+
+        &--danger {
+          &:hover {
+            color: $danger;
+          }
+        }
+
+        &--info {
+          &:hover {
+            color: $info;
+          }
+        }
+
+        &--warning {
+          &:hover {
+            color: $warning;
+          }
+        }
+      }
+    }
+  }
+}
+
+
+//======= override default tables design
+.datatable-table>tbody>tr>td,
+.datatable-table>tbody>tr>th,
+.datatable-table>tfoot>tr>td,
+.datatable-table>tfoot>tr>th,
+.datatable-table>thead>tr>td,
+.datatable-table>thead>tr>th {
+  padding: 1rem;
+  vertical-align: middle;
+}
+
+.datatable-table th button {
+  text-wrap: nowrap;
+  color: $title-color;
+}
+
+.datatable-top::after {
+  clear: both;
+  content: " ";
+  display: table;
+}
+
+.datatable-table tbody tr:last-child {
+  border-color: transparent;
+}
+
+.datatable-selector {
+  border-radius: 4px;
+  background-color: transparent;
+  border: 1px solid var(--bs-border-color);
+
+  &:focus-visible {
+    outline: none;
+    border-color: $brand-color;
+  }
+}
+
+.datatable-search {
+  .datatable-input {
+    // border:1px solid $border-color-tertiary;
+    border: 1px solid $border-color-2;
+    border-radius: 8px;
+
+    &:focus,
+    &:focus-visible {
+      outline: none;
+      border-color: $brand-color;
+    }
+  }
+}
+
+.datatable-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-block-end: 30px;
+
+  @include breakpoint(sm) {
+    gap: 30px;
+  }
+
+  &::after {
+    content: none !important;
+  }
+}
+.datatable-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+
+  @include breakpoint(sm) {
+    gap: 30px;
+  }
+
+  &::after {
+    content: none !important;
+  }
+}
+
+.datatable-container {
+  overflow: scroll;
+  // scrollbar-width: thin;
+  scroll-behavior: smooth;
+
+  &::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+  }
+
+
+  &::-webkit-scrollbar-thumb {
+    background: $tertiary-color;
+    border-radius: 2px;
+    cursor: pointer;
+  }
+
+}
+
+@supports not (scrollbar-width: none) {
+  .datatable-container {
+    scrollbar-color: $tertiary-color;
+  }
+}
+
+
+
+.datatable-sorter {
+  padding-inline-end: 20px;
+
+  &:after,
+  &:before {
+    @include box(12px);
+    @include font-size(12px);
+    border: none;
+    font-family: 'lineicons';
+    color: $black-color;
+    font-weight: 500;
+    right: 0;
+  }
+
+  &::after {
+    content: "\eb0b";
+    bottom: 35%;
+    transform: translateY(-50%);
+    top: auto;
+    opacity: 0.4;
+  }
+
+  &::before {
+    content: "\eb11";
+    top: 60%;
+    transform: translateY(-50%);
+    opacity: 0.4;
+
+  }
+
+}
+
+.datatable-ascending {
+  .datatable-sorter {
+    &::after {
+      opacity: 1;
+    }
+  }
+}
+
+.datatable-descending {
+  .datatable-sorter {
+    &::before {
+      opacity: 1;
+    }
+  }
+}
+
+.datatable-top {
+  .datatable-dropdown {
+    .datatable-selector {
+      margin-inline-end: 5px;
+    }
+  }
+}
+
+
+//datatables pagination link customize
+.datatable-pagination {
+
+  a,
+  button {
+    border-radius: .5rem;
+    padding: .25rem .75rem;
+    border-radius: 4px;
+
+    &.active,
+    &:hover {
+      background-color: $brand-color;
+      color: $white-color;
+    }
+  }
+
+  &-list {
+    @extend %flex,
+    %align-i-center;
+    gap: 5px;
+
+    &-item {
+      &.datatable-active {
+        .datatable-pagination-list-item-link {
+          background-color: $brand-color;
+          color: $white-color;
+          border-radius: 4px;
+
+          &:hover {
+            background-color: $brand-color;
+          }
+        }
+      }
+
+      &-link {
+        background-color: rgba($brand-color, $alpha: .1);
+
+      }
+    }
+  }
+}
+
+.datatable-wrapper.no-footer .datatable-container {
+  border-bottom: 1px solid $border-color-2;
+}

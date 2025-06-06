@@ -1,0 +1,117 @@
+.question-form {
+  &__label {
+    font-weight: 600;
+    margin-bottom: 8px;
+    display: block;
+  }
+
+  &__options {
+    margin-bottom: 20px;
+  }
+
+  &__option-list {
+    margin-bottom: 16px;
+  }
+
+  &__option {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 10px;
+
+
+    button {
+      min-width: auto;
+      @extend %d-inline-grid,
+      %place-i-center;
+      @include box(calc(40px + .25em));
+      border-radius: .5rem;
+      background-color: rgba($danger, $alpha: .10);
+      color: $danger;
+      transition: $transition;
+      border: none;
+
+      i,svg{
+        @include font-size(20px);
+        color: $danger;
+        margin-inline-end: 0;
+      }
+
+
+      &:hover,
+      &:active {
+        background-color: $danger;
+        color: $white-color;
+
+        .trk-icon {
+
+          i,
+          svg {
+            color: $white-color;
+          }
+        }
+      }
+    }
+  }
+
+  &__add-option {
+    display: flex;
+    align-items: center;
+
+    i {
+      margin-right: 6px;
+    }
+  }
+
+  &__answer {
+    margin-top: 20px;
+  }
+
+  &__radio {
+    display: none; // Hide the radio buttons, but they are still functional
+  }
+
+  &__answer-list {
+    display: flex;
+    gap: 10px;
+  }
+
+  &__answer-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: transparent;
+    border: 1px solid $border-color;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+
+
+    &:hover,
+    &.active {
+      background-color: rgba($success, $alpha: .10);
+      border-color: $success;
+    }
+  }
+
+  &__checkbox {
+    display: none; 
+
+  }
+
+  
+
+  &__radio:checked + .question-form__answer-btn {
+    background-color: rgba($success, $alpha: .10);
+    border-color: $success;
+  }
+
+
+  &__checkbox:checked + .question-form__answer-btn {
+    background-color: rgba($success, $alpha: .10);
+    border-color: $success;
+  }
+
+  .required {
+    color: $danger;
+  }
+}

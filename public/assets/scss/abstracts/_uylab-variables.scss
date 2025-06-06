@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+
+$brand-color: #fb0a7d;
+$primary-color: #001846;
+$secondary-color: #fecf29;
+$tertiary-color: #7044b0;
+
+//font colors
+$title-color: #001846;
+$text-color: #001846;
+$text-color-secondary: #7B829D;
+$white-color: $white;
+$black-color: $black;
+
+//Template Accent colors
+$border-color: #CED5E0;
+$border-color-light: #E8ECFC;
+$soft-color: #cce9ff;
+$showhide-color: #7a7b7c;
+
+
+//Template Theme colors
+
+// $brand-color: #6D71FA;
+$primary: $brand-color;
+$primary-color-dark: #0B1531;
+$primary-shade: #195F95;
+// $secondary-color: #F3A57D;
+$secondary-color-2: #B7E7E5;
+$secondary-color-3: #FCEB8F;
+
+
+
+//Template Text colors
+$menu-color: #624ce6;
+$title-color-dark: #231f51;
+$body-color-dark: #8d85b3;
+$text-color-light: #7B829D;
+
+//Template Accent colors
+// $border-color: #EAECF0;
+$border-color: #CED5E0;
+$soft-color: #cce9ff;
+$showhide-color: #7a7b7c;
+
+$profile-bg: #F3F6F9;
+$profile-red: #F64E60;
+
+//Template Font family
+
+$title-font: "Inter", sans-serif;
+  
+$text-font: "Inter", sans-serif;
+
+
+//Template font sizes
+$fs-base: 16px !default;
+$fs-small: 14px;
+
+$fs-h1: 56px;
+$fs-h2: 48px;
+$fs-h3: 36px;
+$fs-h4: 28px; 
+$fs-h5: 24px;
+$fs-h6: 20px;
+
+
+//Template transition
+$transition: all .3s linear;
+
+
+//width variables
+$sidenav-w: 280px;
+$sidenav-gap: 30px;
+$body-gap: 30px;

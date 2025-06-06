@@ -1,0 +1,254 @@
+.multistep {
+    &__form {
+
+        h3 {
+            text-align: center;
+            padding-top: 40px;
+            padding-bottom: 10px;
+            padding-inline: 10px;
+            font-weight: 700;
+        }
+
+        .form-header {
+            @extend %flex;
+            padding-block: 10px;
+            padding-inline: 15px;
+            row-gap: 25px;
+            column-gap: 25px;
+            text-align: center;
+            font-size: 1rem;
+            width: 100%;
+
+            @include breakpoint(sm) {
+                row-gap: 40px;
+                column-gap: 45px;
+            }
+
+            @include breakpoint(md) {
+                row-gap: 40px;
+                column-gap: 10px;
+            }
+
+            @include breakpoint(lg) {
+                gap: 5px;
+            }
+
+            .stepIndicator {
+                @extend %p-rel,
+                %pb-30;
+                flex: 1;
+
+
+                &:before {
+                    @extend %p-abs;
+                    @include add-prefix(transform, translateX(-50%));
+                    @include box(20px);
+                    content: "";
+                    left: 50%;
+                    bottom: 0;
+                    z-index: 9;
+                    background-color: $white-color;
+                    border-radius: 50%;
+                    border: 2px solid $tertiary-color;
+                }
+
+                @include breakpoint(lg) {
+                    &:before {
+                        @extend %p-abs;
+                        @include add-prefix(transform, translateX(-50%));
+                        @include box(20px);
+                        content: "";
+                        left: 50%;
+                        bottom: 0;
+                        z-index: 9;
+                        background-color: $white-color;
+                        border-radius: 50%;
+                        border: 2px solid $tertiary-color;
+                    }
+                }
+
+                @include breakpoint(lg) {
+                    &:after {
+                        position: absolute;
+                        width: 100%;
+                        content: "";
+                        left: 50%;
+                        bottom: 8px;
+                        height: 3px;
+                        background-color: $body-color;
+                    }
+                }
+
+
+
+
+                &:last-child:after {
+                    display: none;
+                }
+
+                &.active {
+                    font-weight: 600;
+                    color: $brand-color;
+
+                    &::before {
+                        background-color: $tertiary-color;
+                        border: 2px solid $tertiary-color;
+                    }
+
+                    &::after {
+                        background-color: $tertiary-color;
+                    }
+                }
+
+                &.finish {
+                    font-weight: 600;
+                    color: $tertiary-color;
+
+                    &::before {
+                        background-color: $tertiary-color;
+                        border: 3px solid $tertiary-color;
+                        color: $white-color;
+                        font-size: 12px;
+                        line-height: 15px;
+                        font-family: "Font Awesome 6 Free";
+                        font-weight: 900;
+                        content: "";
+                    }
+
+
+                    &::after {
+                        background-color: $tertiary-color;
+                    }
+                }
+            }
+        }
+
+
+        .step {
+
+            display: none;
+
+            h4 {
+                @extend %p-rel,
+                %mb-20;
+
+                &::after {
+                    @extend %p-abs;
+                    @include add-prefix(transform, translateX(-50%));
+                    height: 2px;
+                    width: 80px;
+                    background-color: $tertiary-color;
+                    bottom: -10px;
+                    left: 50%;
+                }
+            }
+        }
+
+    }
+
+}
+
+
+.step-progress {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    position: relative;
+    width: 100%;
+
+    &__item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+        color: $text-color;
+        font-size: 14px;
+        text-align: center;
+        flex: 1;
+        cursor: pointer;
+
+        &:not(:first-child)::after {
+            content: '';
+            position: absolute;
+            top: 30%;
+            left: -50%;
+            width: calc(100% - 20px);
+            border: 1px dashed $border-color;
+            z-index: 0;
+
+            @include breakpoint(xl){
+                top: 25%;
+            }
+        }
+
+        &.finish,
+        &.active {
+            color: $tertiary-color;
+
+            .step-progress__number {
+                background-color: $tertiary-color;
+                border-color: $tertiary-color;
+                color: $white-color;
+
+                i,
+                svg {
+                    display: block;
+                    color: $white-color;
+                }
+
+                span {
+                    display: none;
+                }
+            }
+
+            &:not(:last-child)::after {
+                border-color: $tertiary-color;
+            }
+        }
+    }
+
+    &__number {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 35px;
+        height: 35px;
+        border: 2px solid $border-color;
+        border-radius: 50%;
+        z-index: 1;
+        background-color: $white-color;
+        font-size: 16px;
+        color: $title-color;
+        transition: all 0.3s ease;
+
+        i,
+        svg {
+            display: none;
+        }
+
+    }
+
+    &__text {
+        font-size: 14px;
+        color: inherit;
+        font-weight: 500;
+        white-space: nowrap;
+        margin-block-start: 8px;
+    }
+
+    @include breakpoint(max-md) {
+        .step-progress {
+            &__text {
+                display: none;
+            }
+
+            &__item {
+                &:not(:first-child)::after {
+                    top: 50%;
+                }
+            }
+        }
+    }
+
+}

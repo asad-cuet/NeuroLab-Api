@@ -1,0 +1,171 @@
+{
+  "/api/v1/auth/signin": {
+      "post": {
+        "tags": ["App OTP Signin"],
+        "summary": "SignIn by password",
+        "description": "Sign in to the platform by providing email and password.",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string",
+                    "example": ""
+                  },
+                  "password": {
+                    "type": "string",
+                    "example": ""
+                  }
+                },
+                "required": ["email", "password"]
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Signin successful"
+          },
+          "400": {
+            "description": "Invalid email or password"
+          }
+        }
+      }
+    },
+    "/api/v1/auth/send-signin-otp": {
+      "post": {
+        "tags": ["App OTP Signin","Web Otp Signin"],
+        "summary": "Send Signin OTP",
+        "description": "Send an OTP to the provided phone for signin verification.",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "country_code": {
+                    "type": "string",
+                    "example": ""
+                  },
+                  "phone": {
+                    "type": "string",
+                    "example": "01XXXXXXXXX"
+                  }
+                },
+                "required": ["phone"]
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OTP sent successfully"
+          },
+          "400": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    },
+    "/api/v1/auth/signin/otp": {
+      "post": {
+        "tags": ["App OTP Signin"],
+        "summary": "Signin by OTP",
+        "description": "Complete the signin process by verifying the OTP sent to the user's email.",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "country_code": {
+                    "type": "string",
+                    "example": ""
+                  },
+                  "phone": {
+                    "type": "string",
+                    "example": ""
+                  },
+                  "otp": {
+                    "type": "string",
+                    "example": ""
+                  }
+                },
+                "required": ["phone", "otp"]
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Signin successful"
+          },
+          "400": {
+            "description": "Invalid OTP or input"
+          }
+        }
+      }
+    },
+    "/api/v1/auth/social-signin-via-access-token": {
+      "post": {
+        "tags": ["App OTP Signin"],
+        "summary": "Social Signin via Access Token",
+        "description": "Authenticate a user using their social media access token (Facebook, Google, or Apple).",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "provider": {
+                    "type": "string",
+                    "description": "The social media provider used for signin.",
+                    "enum": ["facebook", "google", "apple"],
+                    "example": "google"
+                  },
+                  "access_token": {
+                    "type": "string",
+                    "description": "The access token provided by the social media platform.",
+                    "example": "ya29.A0ARrdaM..."
+                  }
+                },
+                "required": ["provider", "access_token"]
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Signin successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Signin successful"
+                    },
+                    "token": {
+                      "type": "string",
+                      "description": "JWT token for authenticated access",
+                      "example": "eyJhbGciOiJIUzI1NiIsInR5..."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid provider or access token"
+          }
+        }
+      }
+    }
+}

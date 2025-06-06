@@ -1,0 +1,12 @@
+.error{
+    &__content{
+        h4{
+            @extend %mb-15;
+        }
+        p{
+            color: $text-color;
+            max-width: 60ch;
+            margin: 0 auto;
+        }
+    }
+}

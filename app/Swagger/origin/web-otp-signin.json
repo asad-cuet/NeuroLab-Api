@@ -1,0 +1,42 @@
+{
+    "/api/v1/auth/otp-signin-web": {
+      "post": {
+        "tags": ["Web Otp Signin"],
+        "summary": "Signin by OTP",
+        "description": "Complete the signin process by verifying the OTP sent to the user's email.",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "country_code": {
+                    "type": "string",
+                    "example": ""
+                  },
+                  "phone": {
+                    "type": "string",
+                    "example": ""
+                  },
+                  "otp": {
+                    "type": "string",
+                    "example": ""
+                  }
+                },
+                "required": ["phone", "otp"]
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Signin successful"
+          },
+          "400": {
+            "description": "Invalid OTP or input"
+          }
+        }
+      }
+    }
+}

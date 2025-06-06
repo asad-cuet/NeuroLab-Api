@@ -1,0 +1,294 @@
+.trk-card {
+  @extend %p-rel;
+  background-color: $white-color;
+  border-radius: 0.75rem;
+
+
+  &__header {
+    @extend %py-20,
+    %px-30;
+    border-bottom: 1px solid rgba($border-color, 0.8);
+
+    @extend %d-flex,
+    %align-i-center,
+    %justify-between;
+    gap: 15px;
+    flex-wrap: wrap;
+
+    h5 {
+      @extend %text-semibold,
+      %mb-5;
+    }
+
+    h4 {
+      @extend %text-semibold,
+      %mb-0;
+    }
+
+    p {
+      @extend %mb-0;
+      @include font-size(14px);
+    }
+  }
+
+
+  &__thumb {
+    @extend %p-rel,
+    %of-hidden;
+    height: 100%;
+
+    img {
+      @extend %of-hidden;
+      @include add-prefix(transition, $transition);
+      height: 100%;
+      object-fit: cover;
+    }
+
+
+
+    &--overlay {
+      &::before {
+        content: "";
+        @extend %p-abs;
+        @include add-prefix(transition, $transition);
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba($body-color, 0.8);
+        opacity: 0.7;
+        z-index: 1;
+      }
+
+      &:hover {
+        &::before {
+          opacity: 1;
+        }
+      }
+    }
+
+
+    &-badge {
+      @extend %p-abs,
+      %p-30;
+      top: 0;
+      left: 0;
+      z-index: 2;
+    }
+
+    &-content {
+      @extend %p-abs,
+      %p-30;
+      bottom: 0;
+      left: 0;
+      color: $white-color;
+      z-index: 2;
+
+      h6 {
+        color: $white-color;
+      }
+
+      p {
+        @extend %mb-0;
+      }
+    }
+
+    &:hover {
+      img {
+        @include add-prefix(transform, scale(1.03));
+      }
+
+    }
+
+    &--rounded {
+      @extend %d-flex,
+      %justify-center,
+      %of-hidden;
+
+
+      img {
+        @extend %mt-30;
+        @include box(150px);
+        border-radius: 99px;
+
+        &:hover,
+        &:focus {
+          transform: none;
+        }
+
+        &:visited {
+          transform: none;
+        }
+
+      }
+    }
+
+  }
+
+  &__body {
+    @extend %p-30;
+
+    &-title {
+      @extend %text-medium,
+      %mb-15;
+    }
+
+    &-text {
+      @extend %text-regular;
+      color: $text-color;
+
+    }
+
+    &-link {
+      color: $brand-color;
+      @include add-prefix(transition, $transition);
+
+      &:hover {
+        color: $secondary-color;
+      }
+    }
+
+    ul {
+      @extend %mb-0;
+    }
+
+    &-thumb {
+      @extend %d-grid,
+      %place-i-center;
+      background-color: rgba($border-color, 0.8);
+      @include box(80px);
+      border-radius: 50%;
+
+      span {
+
+        i,
+        svg {
+          @include font-size(36px);
+        }
+      }
+
+      &--rounded {
+        border-radius: 99px;
+      }
+    }
+
+  }
+
+  &__activity {
+    &-item {
+      @extend %d-flex,
+      %align-i-center;
+      gap: 20px;
+
+      &:not(:last-child) {
+        @extend %mb-15;
+      }
+    }
+
+    &-thumb {
+      img {
+        max-width: 30px;
+        object-fit: contain;
+      }
+
+      @extend %d-flex;
+      gap: 15px;
+
+      p {
+        @extend %text-clamp-2;
+        @include font-size(14px);
+      }
+    }
+
+    &-content {
+      span {
+        @include font-size(14px);
+        color: rgba($text-color, $alpha: .6);
+      }
+    }
+  }
+
+  &__footer {
+    @extend %py-20,
+    %px-30;
+    border-top: 1px solid rgba($border-color, 0.8);
+
+    &-action {
+      @include add-prefix(transition, $transition);
+    }
+
+    &-view {
+      &:hover {
+        color: $brand-color;
+      }
+    }
+
+    &-edit {
+      &:hover {
+        color: $brand-color;
+      }
+    }
+
+    &-delete {
+      &:hover {
+        color: $danger;
+      }
+    }
+
+    &-group {
+      a {
+        &:not(:last-child) {
+          @extend %me-5;
+        }
+      }
+    }
+  }
+
+  &__overlay {
+    @extend %p-30;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    &-badge {
+      span {
+        @extend %p-abs;
+        top: 0;
+        left: 0;
+      }
+    }
+
+
+
+    &-content {
+      @extend %p-abs;
+      bottom: 0;
+      left: 0;
+
+    }
+  }
+
+  &--sm {
+    .trk-card {
+      &__header {
+        padding: 24px;
+      }
+
+      &__body {
+        padding: 24px;
+      }
+    }
+  }
+
+    &--exsm {
+    .trk-card {
+      &__header {
+        padding: 16px;
+      }
+      &__body {
+        padding: 16px;
+      }
+    }
+  }
+}

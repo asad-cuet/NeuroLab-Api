@@ -1,0 +1,80 @@
+.accordion {
+  &__item {
+    @extend %of-hidden;
+    border-radius: .5rem;
+
+    //style 2
+    &--style2 {
+      .accordion {
+        &__button,
+        &__body {
+          background-color: rgba($secondary-color, $alpha: .05);
+          backdrop-filter: blur(15px);
+          -webkit-backdrop-filter: blur(15px);
+        }
+      }
+    }
+  }
+ 
+  &__button {
+    @extend %w-100;
+    @extend %text-left;
+    @extend %flex;
+    @extend %justify-between;
+    @include font-size(20px);
+    background-color: $white-color;
+    color: $brand-color;
+    font-weight: 500;
+    padding: 1.5rem 1rem;
+    border: none;
+
+    .plus-icon {
+      @extend %p-rel;
+      @include box(14px);
+      display: none;
+
+      @include breakpoint(sm) {
+        display: initial;
+      }
+
+      &:before,
+      &:after {
+        @extend %p-abs;
+        background-color: $brand-color;
+      }
+
+      &::before {
+        @include add-prefix(transform, translateY(-50%));
+        width: 14px;
+        height: 2px;
+        top: 50%;
+      }
+
+    }
+
+    &.collapsed {
+      color: $title-color;
+
+
+      .plus-icon {
+        &::before {
+          background-color: $title-color;
+        }
+
+        &::after {
+          @include add-prefix(transform, translateY(-50%));
+          height: 14px;
+          width: 2px;
+          top: 50%;
+          left: 6px;
+          background-color: $title-color;
+        }
+      }
+    }
+  }
+
+  &__body {
+    padding: .5rem 1.5rem 1.5rem;
+    background-color: $white-color;
+  }
+}

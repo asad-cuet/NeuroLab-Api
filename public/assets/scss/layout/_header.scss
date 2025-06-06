@@ -1,0 +1,580 @@
+// ======== Responsive Variables
+$desktop: 'only screen and (min-width: 1400px)';
+$laptop: 'only screen and (min-width: 1200px) and (max-width: 1399px)';
+$lg: 'only screen and (min-width: 992px) and (max-width: 1199px)';
+$md: 'only screen and (min-width: 768px) and (max-width: 991px)';
+$xs: '(max-width: 767px)';
+$sm: 'only screen and (min-width: 550px) and (max-width: 767px)';
+
+$gray: #5d657b;
+/* ========== header css ========== */
+
+.header {
+  background-color: $white-color;
+  border-radius: 1rem;
+  padding: 24px;
+  position: sticky;
+  // border: 1px solid rgba($brand-color, $alpha: .1);
+  top: 0;
+  // z-index: 999;
+  z-index: 1;
+
+  @include breakpoint(xl) {
+    top: #{$body-gap};
+    padding: 24px;
+  }
+
+  &__wrapper {
+    @extend %flex,
+    %align-i-center,
+    %justify-between;
+  }
+
+  &__left {
+    gap: 30px;
+
+    .menu-toggle {
+      &__btn {
+        @extend %p-rel,
+        %of-hidden,
+        %c-pointer;
+        @include box(40px);
+        @include add-prefix(transition, $transition);
+        background-color: $tertiary-color;
+        border-radius: 0.5rem;
+        text-indent: 100%;
+        color: transparent;
+        white-space: nowrap;
+        outline: none;
+        box-shadow: none;
+        border: none;
+
+        span {
+          @include add-prefix(transition, $transition);
+          top: calc(50% - 2px);
+          left: calc(50% - 12px);
+
+          &,
+          &::after,
+          &::before {
+            @extend %p-abs;
+            @include add-prefix(transition, $transition);
+            content: '';
+            background: $white-color;
+            border-radius: 3px;
+            height: 3px;
+            width: 20px;
+          }
+
+          &::after,
+          &::before {
+            width: 25px;
+            left: 0;
+          }
+
+          &:before {
+            bottom: 8px;
+          }
+
+          &:after {
+            top: 8px;
+          }
+        }
+
+        @include breakpoint(lg) {
+          @include box(50px);
+          border-radius: 0.75rem;
+        }
+
+        &:hover {
+          span {
+            width: 25px;
+
+            @include breakpoint(xl) {
+              @include add-prefix(transform, rotate(180deg));
+            }
+
+            &.open-menu {
+              @include add-prefix(transform, rotate(0));
+            }
+
+            &::before {
+              @include add-prefix(transform,
+                translateX(13px) translateY(3px) rotate(45deg));
+              width: 50%;
+            }
+
+            &::after {
+              @include add-prefix(transform,
+                translateX(13px) translateY(-3px) rotate(-45deg));
+              width: 50%;
+            }
+          }
+        }
+      }
+    }
+
+    .header__search {
+      form {
+        @extend %p-rel;
+        max-width: 270px;
+
+        input {
+          @extend %w-100;
+          @include add-prefix(transition, $transition);
+          border: 1px solid $border-color;
+          background: rgba($light, 0.5);
+          border-radius: 10px;
+          height: 45px;
+          padding-inline: 15px 40px;
+
+          &:focus {
+            border-color: $brand-color;
+            background: $white-color;
+            box-shadow: none;
+            outline: none;
+          }
+        }
+
+        button {
+          @include box(45px);
+          position: absolute;
+          border: none;
+          background: transparent;
+          right: 0;
+          top: 0;
+          color: $text-color;
+          font-weight: 700;
+
+          i,svg{
+            display: grid;
+            place-items: center;
+          }
+        }
+      }
+    }
+  }
+
+  &__actions {
+    @extend %flex,
+    %align-i-center;
+    gap: 10px;
+  }
+
+  &__right {
+    display: flex;
+    justify-content: flex-end;
+    gap: 20px;
+
+    .dropdown-toggle {
+      @extend %d-grid,
+      %place-i-center,
+      %p-rel;
+      // border: 1px solid $border-color;
+      border: 1px solid transparent;
+      // background: rgba($brand-color, 0.2);
+      background-color: $bg-color;
+      border-radius: 10px;
+
+      &:not(.author-toggle) {
+        @include box(35px);
+      }
+
+      &::after {
+        display: none;
+      }
+
+      & span {
+        @extend %p-abs,
+        %d-grid,
+        %place-i-center;
+        @include box(16px);
+        @include font-size(10px);
+        background: $brand-color;
+        color: $white;
+        border-radius: 50%;
+        top: -8px;
+        right: -6px;
+        font-weight: 500;
+      }
+
+      &.flag-toggle {
+        background-color: transparent;
+        border: none;
+        padding: 2px;
+      }
+
+      @include breakpoint(md) {
+        & span {
+          @include box(20px);
+          @include font-size(12px);
+        }
+      }
+
+      @include breakpoint(lg) {
+        @include box(46px);
+      }
+    }
+
+    .dropdown-menu {
+      @extend %p-abs,
+      %p-10;
+      @include add-prefix(transition, $transition);
+      border: 1px solid $border-color;
+      border-radius: 10px;
+      box-shadow: 0 5px 10px rgba($brand-color, $alpha: .1);
+      background-color: $white-color;
+      right: 0;
+      position: absolute;
+      top: 24px !important;
+      transform: translate3d(0px, 60px, 0px);
+      width: 240px;
+
+      @include breakpoint(md) {
+        width: 350px;
+      }
+
+      li {
+        @include add-prefix(transition, $transition);
+        border-bottom: 1px solid $border-color;
+        padding: 3px 0px;
+        position: relative;
+        z-index: 2;
+
+        &:hover {
+
+          .lagnuage,
+          .notificaiton,
+          .signout,
+          a {
+            color: $brand-color;
+            background: rgba($primary, 0.05);
+            cursor: pointer;
+          }
+        }
+
+        &:last-child {
+          border-bottom: none;
+        }
+
+
+        
+        a {
+          padding: 8px 12px;
+          display: flex;
+          color: $black-color;
+          border-radius: 6px;
+
+          .image {
+            max-width: 35px;
+            width: 100%;
+            height: 35px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 12px;
+
+            img {
+              width: 40px;
+              height: 40px;
+              border-radius: 50%;
+              overflow: hidden;
+              aspect-ratio: 1/1;
+              object-fit: cover;
+              object-position: center;
+            }
+          }
+
+          .content {
+            width: 100%;
+            flex: 1;
+
+            h6 {
+              font-size: 14px;
+              margin-bottom: 5px;
+              font-weight: 600;
+              line-height: 1;
+            }
+
+            p {
+              font-size: 14px;
+              color: $text-color;
+              margin-bottom: 0px;
+              line-height: 1.4;
+            }
+
+            span {
+              font-size: 12px;
+              color: $title-color;
+            }
+          }
+        }
+
+        .signout,
+        .lagnuage{
+          padding: 8px 12px;
+          display: flex;
+          align-items: center;
+          gap: 5px;
+          color: $black-color;
+          border-radius: 6px;
+
+          .image {
+            margin-right: 12px;
+
+            img {
+              width: 35px;
+              height: 35px;
+              border-radius: 50%;
+              overflow: hidden;
+              aspect-ratio: 1/1;
+              object-fit: cover;
+              object-position: center;
+              aspect-ratio: 1/1;
+              object-fit: cover;
+              object-position: center;
+            }
+          }
+
+          .content {
+            width: 100%;
+            flex: 1;
+
+            h6 {
+              font-size: 14px;
+              margin-bottom: 5px;
+              font-weight: 600;
+              line-height: 1;
+            }
+
+            p {
+              font-size: 14px;
+              color: $text-color;
+              margin-bottom: 0px;
+              line-height: 1.4;
+            }
+
+            span {
+              font-size: 12px;
+              color: $title-color;
+            }
+          }
+        
+        }
+
+        .notificaiton {
+          padding: 8px 12px;
+          display: flex;
+          color: $black-color;
+          border-radius: 6px;
+
+          .image {
+            overflow: hidden;
+            margin-right: 12px;
+
+            img {
+              width: 35px;
+              height: 35px;
+              border-radius: 50%;
+              overflow: hidden;
+              aspect-ratio: 1/1;
+              object-fit: cover;
+              object-position: center;
+            }
+          }
+
+          .content {
+            width: 100%;
+            flex: 1;
+
+            h6 {
+              font-size: 14px;
+              margin-bottom: 5px;
+              font-weight: 600;
+              line-height: 1;
+            }
+
+            p {
+              font-size: 14px;
+              color: $text-color;
+              margin-bottom: 0px;
+              line-height: 1.4;
+            }
+
+            span {
+              font-size: 12px;
+              font-weight: 400;
+              color: $text-color;
+            }
+          }
+        }
+      }
+    }
+
+    .dropdown-box {
+      position: relative;
+    }
+
+    .header__language {
+      .dropdown-menu {
+        width: 200px;
+      }
+    }
+
+    .notification-box,
+    .header__language {
+      position: relative;
+    }
+
+    // .notification-box {
+    //   .dropdown-menu {
+    //     &.dropdown-menu-end {
+    //       transform: translate3d(0px, 60px, 0px);
+    //     }
+    //   }
+    // }
+
+    .header__language {
+      &-image {
+        @include box(25px);
+      }
+
+      &-name {
+        p {
+          @extend %mb-0;
+        }
+      }
+
+      .dropdown-menu {
+        // &.dropdown-menu-end {
+        //   // transform: translate3d(0px, 60px, 0px);
+        // }
+
+        span,
+        a {
+          gap: 10px;
+        }
+      }
+    }
+
+    .profile {
+      display: flex;
+      position: relative;
+
+      button {
+        width: auto;
+      }
+
+      .dropdown-menu {
+        width: 230px;
+
+        // &.dropdown-menu-end {
+        //   // transform: translate3d(0px, 60px, 0px);
+        // }
+
+        li {
+          border-bottom: none;
+
+          span,
+          a {
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+
+            i {
+              margin-right: 15px;
+              font-weight: 700;
+            }
+          }
+        }
+      }
+
+      &__info {
+        margin: 0 5px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+
+        >i {
+          @extend %d-none;
+
+          @include breakpoint(md) {
+            display: inline-block;
+          }
+        }
+      }
+
+      &__avatar {
+        @include box-shadow(0px 21px 25px rgba(218, 223, 227, 0.8));
+        border-radius: 50%;
+        position: relative;
+
+        img {
+          border-radius: 50%;
+          width: 46px;
+          height: 46px;
+          aspect-ratio: 1 / 1;
+          object-fit: cover;
+          object-position: center;
+        }
+
+        .status {
+          width: 13px;
+          height: 13px;
+          border-radius: 50%;
+          // border: 1px solid rgba($brand-color, $alpha: .2);
+          background: $success;
+          position: absolute;
+          bottom: 0;
+          right: 0;
+          top: auto;
+        }
+      }
+
+      &__name {
+        @extend %d-none,
+        %text-start;
+
+        @include breakpoint(md) {
+          display: block;
+        }
+
+        h6 {
+          @extend %mb-0;
+          @include font-size(16px);
+        }
+
+        p {
+          @extend %mb-0;
+          @include font-size(14px);
+          color: $text-color;
+        }
+      }
+    }
+
+    &--style2 {
+      display: block;
+
+      .profile__name {
+        h6 {
+          color: $white-color;
+        }
+      }
+
+      .profile__info {
+        i {
+          color: $white-color;
+        }
+      }
+    }
+  }
+}
+
+.header-container{
+  position: sticky;
+  top: 12px;
+  z-index: 1;
+
+  @include breakpoint(xl) {
+    top: #{$body-gap};
+  }
+}

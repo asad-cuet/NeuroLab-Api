@@ -1,0 +1,122 @@
+{
+  "/api/v1/auth/signup": {
+    "post": {
+      "tags": ["App OTP Signup"],
+      "summary": "SignUp by password",
+      "description": "Create a new user by providing a name, email, and password.",
+      "requestBody": {
+        "content": {
+          "multipart/form-data": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "example": ""
+                },
+                "email": {
+                  "type": "string",
+                  "example": ""
+                },
+                "password": {
+                  "type": "string",
+                  "example": ""
+                }
+              },
+              "required": ["name", "email", "password"]
+            }
+          }
+        },
+        "required": true
+      },
+      "responses": {
+        "200": {
+          "description": "Signup successful"
+        },
+        "400": {
+          "description": "Invalid input"
+        }
+      }
+    }
+  },
+  "/api/v1/auth/send-signup-otp": {
+    "post": {
+      "tags": ["App OTP Signup"],
+      "summary": "Send Signup OTP",
+      "description": "Send an OTP to the provided phone for signup verification.",
+      "requestBody": {
+        "content": {
+          "multipart/form-data": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "country_code": {
+                    "type": "string",
+                    "example": ""
+                },
+                "phone": {
+                  "type": "string",
+                  "example": "01XXXXXXXXX"
+                }
+              },
+              "required": ["phone"]
+            }
+          }
+        },
+        "required": true
+      },
+      "responses": {
+        "200": {
+          "description": "OTP sent successfully"
+        },
+        "400": {
+          "description": "Invalid input"
+        }
+      }
+    }
+  },
+  "/api/v1/auth/signup/otp": {
+    "post": {
+      "tags": ["App OTP Signup"],
+      "summary": "Signup by OTP",
+      "description": "Complete the signup process by verifying the OTP sent to the user's email.",
+      "requestBody": {
+        "content": {
+          "multipart/form-data": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "example": ""
+                },
+                "country_code": {
+                    "type": "string",
+                    "example": ""
+                },
+                "phone": {
+                  "type": "string",
+                  "example": ""
+                },
+                "otp": {
+                  "type": "string",
+                  "example": ""
+                }
+              },
+              "required": ["name", "phone", "otp"]
+            }
+          }
+        },
+        "required": true
+      },
+      "responses": {
+        "200": {
+          "description": "Signup successful"
+        },
+        "400": {
+          "description": "Invalid OTP or input"
+        }
+      }
+    }
+  }
+}

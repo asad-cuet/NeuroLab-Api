@@ -1,0 +1,179 @@
+.pricing {
+
+  &--shape {
+    @extend %p-rel;
+
+    &:after,
+    &:before {
+      @extend %p-abs;
+      background-size: contain;
+      background-repeat: no-repeat;
+      z-index: -1;
+    }
+
+    &:before {
+      @include box(calc(200px + 7vw), calc(300px + 7vw));
+      @include add-prefix(animation, left-right 3s linear infinite alternate);
+      background-image: url(../images/pricing/shape/1.png);
+      left: 2%;
+      bottom: 5%;
+      opacity: .12;
+    }
+
+    &:after {
+      @include box(calc(120px + 7vw), calc(200px + 7vw));
+      @include add-prefix(animation, floating 4s linear infinite alternate);
+      background-image: url(../images/pricing/shape/3.png);
+      right: 2%;
+      top: 5%;
+      opacity: .15;
+    }
+  }
+
+  &__switcher {
+    @extend %flex,
+    %justify-center,
+    %align-i-center,
+    %mb-40;
+    gap: 15px;
+    padding: 1rem;
+    background-color: $white-color;
+    width: max-content;
+    border-radius: .5rem;
+    margin-inline: auto;
+
+    &-btn {
+      @extend %mb-0;
+      padding: .5rem 1rem;
+      border-radius: .35rem;
+      background-color: rgba($brand-color, $alpha: .05);
+      font-weight: 500;
+      color: $title-color;
+      cursor: pointer;
+
+      &.active {
+        background-color: $brand-color;
+        color: $white-color;
+
+        small {
+          color: $secondary-color;
+        }
+      }
+
+      small {
+        @extend %ms-5;
+        color: $brand-color;
+      }
+    }
+  }
+
+  &__item {
+    @include add-prefix(transition, all .3s ease);
+    background-color: $white-color;
+    border-radius: 5px;
+    border: 2px solid transparent;
+
+    &--promoted {
+      background-color: $brand-color;
+      border-color: $brand-color;
+      @include add-prefix(transform, scale(1.02));
+      box-shadow: 0 0 10px 0 rgba($brand-color, $alpha: .3);
+
+      * {
+        color: $white-color;
+      }
+
+      h4 {
+        color: $secondary-color;
+      }
+
+      h3 {
+        color: $white-color;
+      }
+
+      p {
+        color: lighten($body-color, $amount: 10);
+      }
+
+      .pricing__item-top {
+        border-bottom: 1px solid rgba($white-color, $alpha: .3);
+      }
+
+      .btn {
+        background-color: $white-color;
+        color: $brand-color;
+
+        &:hover {
+          color: $brand-color;
+        }
+      }
+    }
+
+    //pricing item billed yearly text badge
+    &-billedYearly {
+      @include add-prefix(transition, $transition);
+      visibility: hidden;
+      opacity: 0;
+      background-color: $title-color;
+      color: $white-color;
+      font-weight: 500;
+
+      &.show {
+        visibility: visible;
+        opacity: 1;
+      }
+    }
+
+    &-inner {
+      padding: 22px;
+    }
+
+    &-top {
+      @extend %pb-25;
+      min-height: 110px;
+      border-bottom: 1px solid rgba($brand-color, $alpha: .1);
+
+      p {
+        @extend %mb-0;
+      }
+    }
+
+    &-middle {
+      padding-block: 1.5rem;
+      border-bottom: 1px solid rgba($brand-color, $alpha: .1);
+
+      h3 {
+        @include add-prefix(transition, $transition);
+      }
+
+      .btn {
+        @extend %text-center;
+        display: block;
+      }
+    }
+
+    &-bottom {
+      padding-block: 1.25rem;
+    }
+
+    &:hover {
+      @include add-prefix(transform, scale(1.02));
+      box-shadow: 0 0 10px 0 rgba($brand-color, $alpha: .3);
+    }
+  }
+
+  &__list {
+    @extend %mb-0,
+    %ps-0;
+
+    &-item {
+      span {
+        @extend %me-5;
+      }
+
+      &:not(:last-child) {
+        @extend %mb-15;
+      }
+    }
+  }
+}

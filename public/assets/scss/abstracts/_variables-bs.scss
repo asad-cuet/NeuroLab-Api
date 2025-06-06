@@ -1,0 +1,114 @@
+// -----------------------------------------------------------------------------
+// This file contains all application-wide Sass variables.
+// -----------------------------------------------------------------------------
+
+
+
+
+//*-----------------------------------
+//*** Bootstrap's variables override
+//*-----------------------------------
+
+
+// Color system
+
+// scss-docs-start gray-color-variables
+$white: #fff !default;
+$gray-100: #f8f9fa !default;
+$gray-200: #e9ecef !default;
+$gray-300: #dee2e6 !default;
+$gray-400: #ced4da !default;
+$gray-500: #adb5bd !default;
+$gray-600: #6c757d !default;
+$gray-700: #495057 !default;
+$gray-800: #343a40 !default;
+$gray-900: #212529 !default;
+$black: #000 !default;
+// scss-docs-end gray-color-variables
+
+
+ 
+// scss-docs-start color-variables
+$blue: #008FFF !default;
+$indigo: #6610f2 !default;
+$purple: #784bff !default;
+$pink: #d63384 !default;
+$red: #ee5e55 !default;
+$orange: #fd7e14 !default;
+$yellow: #FFBB56 !default;
+$green: #23AE5B !default;
+$teal: #20c997 !default;
+$cyan: #00ccff !default;
+// scss-docs-end color-variables
+
+
+// scss-docs-start colors-map
+$colors: ("blue": $blue,
+  "indigo": $indigo,
+  "purple": $purple,
+  "pink": $pink,
+  "red": $red,
+  "orange": $orange,
+  "yellow": $yellow,
+  "green": $green,
+  "teal": $teal,
+  "cyan": $cyan,
+  "black": $black,
+  "white": $white,
+  "gray": $gray-600,
+  "gray-dark": $gray-800) !default;
+// scss-docs-end colors-map
+
+// Body
+//
+// Settings for the `<body>` element.
+
+$body-bg: #F4F7FE;
+$body-bg-dark: #0D0E11;
+$body-color: #344054 !default;
+$body-text-align: null !default;
+
+
+//==========scss-docs-start theme-color-variables ==========
+
+//primary colors:
+$primary: $blue !default;
+
+//Secondary colors:
+$secondary: $blue !default;
+
+//Tertiary colors:
+$tertiary: $blue !default;
+
+//Neutral Colors:
+$neutral: $gray-100;
+
+
+
+//State colors:
+$success: $green !default;
+$info: $cyan !default;
+$warning: $yellow !default;
+$danger: $red !default;
+
+//Additional Colors:
+$light: $gray-100 !default;
+$dark: $gray-900 !default;
+$bg-light-color: #e6faff;
+$bg-light-color: #f5f5f6;
+
+
+
+
+// shadow modify colors
+
+// $box-shadow: 0 0 10px 0 rgba($brand-color, $alpha: .1);
+
+$box-shadow: 0 0 10px 0 rgba(109, 113, 250, 0.1);
+$box-shadow-sm: 0 0 10px 0 rgba(109, 113, 250, 0.075);
+$box-shadow-lg: 0 0 10px 0 rgba(109, 113, 250, 0.175);
+
+// $box-shadow-inset: inset 0 1px 2px rgba($black, .075);
+
+
+//============scss-docs-end theme-color-variables ==========

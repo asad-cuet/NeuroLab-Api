@@ -1,0 +1,69 @@
+@charset "UTF-8";
+
+
+// 1. Configuration and helpers
+@import 'abstracts/variables-bs',
+'abstracts/variables-uylab',
+'abstracts/functions',
+'abstracts/extends',
+'abstracts/mixins';
+
+// 2. Vendors
+@import 'vendors/normalize',
+'vendors/nestable',
+'vendors/data-tables/simple-datatables',
+'vendors/bootstrap/bootstrap';
+
+
+// 3. Base stuff
+@import 'base/base',
+'base/typography',
+'base/common',
+'base/helpers';
+
+// 4. Layout-related sections
+@import 'layout/header',
+'layout/sidebar',
+'layout/main',
+'layout/data-tables',
+'layout/banner',
+'layout/about',
+'layout/account',
+'layout/footer';
+
+// 5. Components
+@import 'components/btn',
+'components/intro-video',
+'components/step',
+'components/feature',
+'components/integration',
+'components/testimonial',
+'components/section-header',
+'components/rating',
+'components/todo',
+'components/pricing',
+'components/faq',
+'components/pagination',
+'components/cta',
+'components/course-card',
+'components/social',
+'components/tables',
+'components/role',
+'components/permissions',
+'components/forms',
+'components/admin',
+'components/question',
+'components/trk-card',
+'components/multistep',
+'components/trk-accordion',
+'components/trk-tab',
+'components/avatar',
+'components/symbol',
+'components/error',
+'components/profile-info',
+'components/table';
+
+
+
+// 7. Themes
+@import 'themes/default';

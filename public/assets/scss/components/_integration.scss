@@ -1,0 +1,18 @@
+.integration {
+  background: linear-gradient(0deg, rgba($secondary-color, .2) 0%, rgba(255, 255, 255, 0) 100%);
+
+  &__content {
+    h3 {
+      @extend %mb-20;
+    }
+
+    >p {
+      @include font-size(18px);
+      max-inline-size: 55ch;
+    }
+
+    .btn {
+      @extend %mt-30;
+    }
+  }
+}

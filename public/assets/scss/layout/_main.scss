@@ -1,0 +1,19 @@
+.body-wrapper {
+  gap: 30px;
+
+  @include breakpoint(xl) {
+    display: flex;
+    padding: 30px;
+
+  }
+}
+
+.page-container {
+  @extend %pt-30;
+}
+
+// .main-wrapper {
+//   @extend %of-hidden;
+//   width: calc(100% - #{$sidenav-w} - #{$sidenav-gap});
+//   border-radius: 1rem;
+// }

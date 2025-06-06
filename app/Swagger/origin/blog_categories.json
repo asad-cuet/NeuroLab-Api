@@ -1,0 +1,50 @@
+{
+    "\/api\/v1\/blog-categories": {
+        "get": {
+            "tags": [
+                "blog_categories"
+            ],
+            "summary": "Get All BlogCategory",
+            "description": "Retrieve a list of all blog_categories.",
+            "parameters": [],
+            "responses": {
+                "200": {
+                    "description": "Successful operation"
+                },
+                "400": {
+                    "description": "Invalid status value"
+                }
+            },
+            "security": []
+        }
+    },
+    "\/api\/v1\/blog-categories\/{id}": {
+        "get": {
+            "tags": [
+                "blog_categories"
+            ],
+            "summary": "Get BlogCategory details",
+            "description": "Retrieve details of blog_categories.",
+            "parameters": [
+                {
+                    "name": "id",
+                    "in": "path",
+                    "description": "ID of the BlogCategory",
+                    "required": true,
+                    "schema": {
+                        "type": "integer"
+                    }
+                }
+            ],
+            "responses": {
+                "200": {
+                    "description": "Successful operation"
+                },
+                "400": {
+                    "description": "Invalid status value"
+                }
+            },
+            "security": []
+        }
+    }
+}

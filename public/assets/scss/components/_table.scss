@@ -1,0 +1,93 @@
+.table {
+  --bs-table-bg: transparent;
+  margin-bottom: 0;
+
+
+  thead{
+    border-style: hidden;
+    tr{
+      th{
+        color: $gray-500;
+      }
+    }
+  }
+
+  tbody{
+    tr{
+      // border-bottom: 1px dashed var(--bs-border-color);
+      border-bottom: 1px solid $border-color-2;
+    }
+  }
+
+  >:not(caption) > * > * {
+  padding:.75rem 0;
+  }
+
+  // similar design for without data table 
+  > tbody > tr, > tfoot > tr, > thead > tr {
+    > td, > th {
+      padding: 1rem;
+      vertical-align: middle;
+    }
+  }
+
+  &__top{
+    @extend %d-flex, %align-i-center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-block-end: 24px;
+
+    &-dropdown{
+      label{
+        select{
+              padding: 6px;
+              border-color: var(--bs-border-color);
+              border-radius: 4px;
+              margin-inline-end: 5px;
+              &:focus-visible{
+                  outline: none;
+                  border-color: $brand-color;
+              }
+        }
+      }
+    }
+
+    &-action{
+      @extend %d-flex, %align-i-center;
+      flex-wrap: wrap;
+      gap: 10px;
+
+      .form-group{
+        min-width: 200px;
+      }
+    }
+  }
+
+
+  // filter items lists
+
+  &__filterItem{
+    &-lists{
+      padding: 0;
+      margin: 0;
+      @extend %d-flex, %align-i-center;
+      gap: 5px;
+      flex-wrap: wrap;
+
+      li{
+        list-style: none;
+        a{
+          color: $warning;
+          transition: $transition;
+          &:hover{
+            color: $brand-color;
+          }
+        }
+      }
+    }
+  }
+
+} 
+
+

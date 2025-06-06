@@ -1,0 +1,209 @@
+{
+    "\/api\/v1\/blog-comments": {
+        "get": {
+            "tags": [
+                "blog_comments"
+            ],
+            "summary": "Get All BlogComment",
+            "description": "Retrieve a list of all blog_comments.",
+            "parameters": [],
+            "responses": {
+                "200": {
+                    "description": "Successful operation"
+                },
+                "400": {
+                    "description": "Invalid status value"
+                }
+            },
+            "security": []
+        },
+        "post": {
+            "tags": [
+                "blog_comments"
+            ],
+            "summary": "Store BlogComment",
+            "description": "Create a new BlogComment.",
+            "requestBody": {
+                "required": true,
+                "content": {
+                    "multipart\/form-data": {
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "name": {
+                                    "type": "string",
+                                    "description": "Enter name",
+                                    "default": ""
+                                },
+                                "phone": {
+                                    "type": "string",
+                                    "description": "Enter phone",
+                                    "default": ""
+                                },
+                                "email": {
+                                    "type": "string",
+                                    "description": "Enter email",
+                                    "default": ""
+                                },
+                                "user_id": {
+                                    "type": "string",
+                                    "description": "Enter user_id",
+                                    "default": ""
+                                },
+                                "parent_id": {
+                                    "type": "string",
+                                    "description": "Enter parent_id",
+                                    "default": ""
+                                },
+                                "status": {
+                                    "type": "string",
+                                    "description": "Select column_upper_case",
+                                    "enum": [
+                                        "option_1",
+                                        "option_2"
+                                    ],
+                                    "default": ""
+                                },
+                                "image": {
+                                    "type": "string",
+                                    "format": "binary",
+                                    "description": "Upload Image"
+                                },
+                                "description": {
+                                    "type": "string",
+                                    "description": "Enter description (up to 2000 characters)",
+                                    "maxLength": 2000,
+                                    "default": "",
+                                    "example": ""
+                                }
+                            },
+                            "required": [
+                                "name",
+                                "user_id",
+                                "status"
+                            ]
+                        }
+                    },
+                    "application\/json": {
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "name": {},
+                                "phone": {},
+                                "email": {},
+                                "user_id": {},
+                                "parent_id": {},
+                                "status": {},
+                                "image": {},
+                                "description": {}
+                            }
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "200": {
+                    "result": true,
+                    "message": "User created successfully"
+                },
+                "400": {
+                    "result": false,
+                    "message": "User created successfully"
+                }
+            },
+            "security": []
+        }
+    },
+    "\/api\/v1\/blog-comments\/{id}": {
+        "get": {
+            "tags": [
+                "blog_comments"
+            ],
+            "summary": "Get BlogComment details",
+            "description": "Retrieve details of blog_comments.",
+            "parameters": [
+                {
+                    "name": "id",
+                    "in": "path",
+                    "description": "ID of the BlogComment",
+                    "required": true,
+                    "schema": {
+                        "type": "integer"
+                    }
+                }
+            ],
+            "responses": {
+                "200": {
+                    "description": "Successful operation"
+                },
+                "400": {
+                    "description": "Invalid status value"
+                }
+            },
+            "security": []
+        },
+        "put": {
+            "tags": [
+                "blog_comments"
+            ],
+            "summary": "Get All BlogComment",
+            "description": "Create a new BlogComment.",
+            "requestBody": {
+                "required": true,
+                "content": {
+                    "application\/json": {
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "name": {},
+                                "phone": {},
+                                "email": {},
+                                "user_id": {},
+                                "parent_id": {},
+                                "status": {},
+                                "image": {},
+                                "description": {}
+                            }
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "201": {
+                    "description": "User created successfully"
+                },
+                "400": {
+                    "description": "Invalid input"
+                }
+            },
+            "security": []
+        },
+        "delete": {
+            "tags": [
+                "blog_comments"
+            ],
+            "summary": "Delete an existing BlogComment",
+            "description": "Delete a blog_comments by ID.",
+            "parameters": [
+                {
+                    "name": "id",
+                    "in": "path",
+                    "description": "ID of the BlogComment to be deleted",
+                    "required": true,
+                    "schema": {
+                        "type": "integer"
+                    }
+                }
+            ],
+            "responses": {
+                "204": {
+                    "description": "User deleted successfully"
+                },
+                "404": {
+                    "description": "User not found"
+                }
+            },
+            "security": []
+        }
+    }
+}

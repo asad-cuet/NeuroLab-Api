@@ -1,0 +1,286 @@
+// -----------------------------------------------------------------------------
+// This file contains CSS helper classes.
+// -----------------------------------------------------------------------------
+
+.gradient-text--theme {
+  background: -webkit-linear-gradient($brand-color, $secondary-color);
+  @include add-prefix(background-clip, text);
+  @include add-prefix(text-fill-color, transparent);
+}
+
+
+.padding-top {
+  padding-block-start: 80px;
+
+  @include breakpoint(lg) {
+    padding-block-start: 130px;
+  }
+}
+
+.padding-bottom {
+  padding-block-end: 80px;
+
+  @include breakpoint(lg) {
+    padding-block-end: 130px;
+  }
+}
+
+.bg--light-color {
+  background-color: $bg-light-color;
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: $title-color;
+
+    a {
+      color: inherit;
+    }
+  }
+
+  p {
+    color: $bg-color;
+  }
+}
+
+.fs-7{
+  @include font-size(14px);
+}
+
+.bg-tertiary{
+  background-color: $tertiary-color;
+}
+
+.bg-color{
+  background-color: $bg-color !important;
+}
+.bg-color-2{
+  background-color: $bg-color-2 !important;
+}
+
+
+// text colors
+.title-color{
+  color: $title-color;
+}
+
+.title-color-2{ 
+  color: $title-color-2;
+}
+
+.title-color-muted{
+  color: $title-color-muted;
+}
+
+
+.text-color{
+  color: $text-color !important;
+}
+
+.text-color-2{
+  color: $text-color-2 !important;
+}
+
+.text-mute{
+  color: $text-color-muted;
+}
+
+
+
+.trk-thumb {
+  @extend %of-hidden,
+  %d-inline-grid,
+  %place-i-center;
+  border-radius: .5rem;
+
+  &.thumb-primary {
+    background-color: rgba($brand-color, $alpha: .2);
+    color: $brand-color;
+  }
+
+  &.thumb-success {
+    background-color: rgba($success, $alpha: .2);
+    color: $success;
+  }
+
+  &.thumb-warning {
+    background-color: rgba($warning, $alpha: .2);
+    color: $warning;
+  }
+
+  &.thumb-danger {
+    background-color: rgba($danger, $alpha: .2);
+    color: $danger;
+  }
+
+
+
+  span {
+    @extend %text-semibold;
+  }
+  img{
+      &.thumb-xs {
+        @include box(24px);
+      }
+
+      &.thumb-sm {
+        @include box(40px);
+      }
+
+      &.thumb-md {
+        @include box(50px);
+      }
+
+      &.thumb-lg {
+        @include box(80px);
+      }
+  }
+
+  &.thumb-xs {
+    @include box(24px);
+  }
+
+  &.thumb-sm {
+    @include box(40px);
+  }
+
+  &.thumb-md {
+    @include box(50px);
+  }
+
+  &.thumb-lg {
+    @include box(80px);
+  }
+}
+
+.trk-content {
+  p {
+    @extend %mb-0;
+  }
+}
+
+.height-100{
+  height: 100%;
+}
+
+.flex-1{
+  flex: 1;
+}
+
+
+.min-width-170{
+  min-width: 170px;
+}
+.min-width-150{
+  min-width: 150px;
+}
+
+
+.max-width-100{
+  max-width: 100px;
+}
+.max-width-150{
+  max-width: 150px;
+}
+.max-width-200{
+  max-width: 200px;
+}
+.max-width-250{
+  max-width: 250px;
+}
+.max-width-300{
+  max-width: 300px;
+}
+.max-width-350{
+  max-width: 350px;
+}
+.max-width-400{
+  max-width: 400px;
+}
+
+
+.min-width-100{
+  min-width: 100px; 
+}
+.min-width-150{
+  min-width: 150px;
+}
+.min-width-200{
+  min-width: 200px;
+}
+.min-width-250{
+  min-width: 250px;
+}
+.min-width-300{
+  min-width: 300px;
+}
+
+//helper class
+.custom-label-mt{
+  margin-block-start: 0.7rem;
+}
+
+.min-w-200px {
+  min-width: 200px !important;
+}
+
+.min-w-100px {
+  min-width: 100px !important;
+}
+
+
+.min-w-auto{
+  min-width: auto !important;
+}
+
+// height
+.h-30{
+  height: 30px;
+}
+.h-35{
+  height: 35px;
+}
+.h-40{
+  height: 40px;
+}
+
+.link-color{
+  color: $link-color;
+}
+
+// override the default
+
+.border2{
+  border: 1px solid $border-color-2;
+}
+
+@include breakpoint(lg){
+  .border2-lg-end {
+      border-right: 1px solid $border-color-2; 
+    }
+}
+
+
+
+.bg-gradient-color{
+  background: linear-gradient(0deg, $brand-color -10%, rgba(255, 255, 255, 0.275) 100%);
+}
+
+// .shadow{
+//   box-shadow: 0 0 10px 0 rgba($brand-color, $alpha: .1);
+// }
+
+
+// bootstrap override class components
+.border{
+  border:  1px solid $border-color-2 !important;
+}
+.border-bottom{
+  border-bottom:  1px solid $border-color-2 !important;
+}
+.border-top{
+  border-top:  1px solid $border-color-2 !important;
+}

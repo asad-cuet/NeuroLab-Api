@@ -1,0 +1,43 @@
+.trk-avatar {
+  &__item {
+    .avatar-100 {
+      height: 6.25rem;
+      width: 6.25rem;
+    }
+
+    .avatar-90 {
+      height: 5.625rem;
+      width: 5.625rem;
+    }
+
+    .avatar-80 {
+      height: 5rem;
+      width: 5rem;
+    }
+
+    .avatar-70 {
+      height: 4.375rem;
+      width: 4.375rem;
+    }
+
+    .avatar-60 {
+      height: 3.75rem;
+      width: 3.75rem;
+    }
+
+    .avatar-50 {
+      height: 3.125rem;
+      width: 3.125rem;
+    }
+
+    .avatar-40 {
+      height: 2.5rem;
+      width: 2.5rem;
+    }
+
+    .avatar-30 {
+      height: 1.875rem;
+      width: 1.875rem;
+    }
+  }
+}

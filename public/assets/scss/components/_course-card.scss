@@ -1,0 +1,72 @@
+.coursecard {
+  &__item {
+    &-inner {
+      position: relative;
+      overflow: hidden;
+      text-align: start;
+      border-radius: 10px;
+      background-color: $bg-color;
+      height: 100%;
+    }
+
+    &-thumb {
+      position: relative;
+      overflow: hidden;
+
+      img {
+        width: 100%;
+        transition: $transition;
+        aspect-ratio: 4 / 3;
+        object-fit: cover;
+        object-position: center;
+      }
+    }
+
+    &-content {
+      padding: 24px;
+
+      p {
+        margin-bottom: 5px;
+        color: $text-color-muted;
+      }
+
+      h6 {
+        transition: $transition;
+        min-height: 47px;
+
+        a {
+          transition: $transition;
+        }
+      }
+
+      .trk-btn {
+        margin-top: 1rem;
+      }
+    }
+
+    &-category {
+      position: absolute;
+      top: 15px;
+      left: 15px;
+
+      span {
+        padding: 5px 16px;
+        border-radius: 99px;
+        font-size: 14px;
+        line-height: 1;
+        color: $brand-color;
+        background-color: $secondary-color;
+      }
+    }
+
+    &:hover {
+      &-thumb img {
+        transform: scale(1.03);
+      }
+
+      &-content h6 a {
+        color: $white-color;
+      }
+    }
+  }
+}

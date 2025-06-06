@@ -1,0 +1,40 @@
+.banner {
+  background-size: cover;
+  padding-block-start: 90px;
+  padding-block-start: 120px;
+
+  @include breakpoint(md) {
+    padding-block-start: 110px;
+    padding-block-end: 140px;
+  }
+
+  @include breakpoint(lg) {
+    padding-block-start: 140px;
+    padding-block-end: 170px;
+  }
+
+  @include breakpoint(xl) {
+    padding-block-start: 170px;
+    padding-block-end: 350px;
+  }
+
+  &__content {
+    @extend %text-center;
+
+    h1 {
+      @extend %mb-20;
+      max-inline-size: 30ch;
+      margin-inline: auto;
+    }
+
+    >p {
+      @include font-size(20px);
+      max-inline-size: 55ch;
+      margin-inline: auto;
+    }
+
+    .btn-group {
+      @extend %mt-40;
+    }
+  }
+}

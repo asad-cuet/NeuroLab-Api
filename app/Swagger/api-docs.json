@@ -1,0 +1,1448 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Api Documentation",
+        "description": "",
+        "version": "1.0.0"
+    },
+    "components": {
+        "securitySchemes": {
+            "BearerAuth": {
+                "type": "http",
+                "scheme": "bearer",
+                "description": "Bearer token authorization using Laravel Sanctum or Passport."
+            }
+        }
+    },
+    "paths": {
+        "\/api\/v1\/create-token\/{user_id}": {
+            "get": {
+                "tags": [
+                    "Create Token"
+                ],
+                "summary": "Create Token",
+                "description": "Generates an API token for the specified user by user ID.",
+                "parameters": [
+                    {
+                        "name": "user_id",
+                        "in": "path",
+                        "required": true,
+                        "description": "The ID of the user for whom the token will be generated.",
+                        "schema": {
+                            "type": "integer",
+                            "example": 1
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Token created successfully",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "user": {
+                                            "type": "object",
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "name": {
+                                                    "type": "string",
+                                                    "example": "John Doe"
+                                                },
+                                                "email": {
+                                                    "type": "string",
+                                                    "example": "john.doe@example.com"
+                                                }
+                                            }
+                                        },
+                                        "token": {
+                                            "type": "string",
+                                            "description": "The generated API token",
+                                            "example": "1|qwe1234yuiopasdfghjklzxvbnm09876"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "User not found"
+                    }
+                }
+            }
+        },
+        "\/api\/user": {
+            "get": {
+                "tags": [
+                    "Account"
+                ],
+                "summary": "Get Authenticated User",
+                "description": "Fetch the details of the authenticated user.",
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User details fetched successfully",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer",
+                                            "example": 1
+                                        },
+                                        "name": {
+                                            "type": "string",
+                                            "example": "John Doe"
+                                        },
+                                        "email": {
+                                            "type": "string",
+                                            "example": "johndoe@example.com"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized - Token missing or invalid"
+                    }
+                }
+            }
+        },
+        "\/api\/v1\/auth\/change-password": {
+            "post": {
+                "tags": [
+                    "Account"
+                ],
+                "summary": "Change Password",
+                "description": "Allows authenticated users to change their password.",
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "multipart\/form-data": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "old_password": {
+                                        "type": "string",
+                                        "description": "The current password of the user.",
+                                        "example": ""
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "description": "The new password.",
+                                        "example": ""
+                                    },
+                                    "confirm_password": {
+                                        "type": "string",
+                                        "description": "Confirmation of the new password.",
+                                        "example": ""
+                                    }
+                                },
+                                "required": [
+                                    "old_password",
+                                    "password",
+                                    "confirm_password"
+                                ]
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Password changed successfully",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Password changed successfully"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid old password or mismatch in new passwords"
+                    },
+                    "401": {
+                        "description": "Unauthorized - Token missing or invalid"
+                    }
+                }
+            }
+        },
+        "\/api\/v1\/auth\/profile-update": {
+            "post": {
+                "tags": [
+                    "Account"
+                ],
+                "summary": "Update Profile",
+                "description": "Allows authenticated users to update their profile information.",
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "multipart\/form-data": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "description": "User's full name.",
+                                        "example": ""
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "description": "User's email address.",
+                                        "example": ""
+                                    },
+                                    "phone": {
+                                        "type": "string",
+                                        "description": "User's phone number.",
+                                        "example": ""
+                                    },
+                                    "avatar": {
+                                        "type": "string",
+                                        "description": "User's avatar image (optional).",
+                                        "format": "binary"
+                                    }
+                                },
+                                "required": [
+                                    "name",
+                                    "email",
+                                    "phone"
+                                ]
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Profile updated successfully",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Profile updated successfully"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid input or validation errors"
+                    },
+                    "401": {
+                        "description": "Unauthorized - Token missing or invalid"
+                    }
+                }
+            }
+        },
+        "\/api\/v1\/auth\/signup": {
+            "post": {
+                "tags": [
+                    "App OTP Signup"
+                ],
+                "summary": "SignUp by password",
+                "description": "Create a new user by providing a name, email, and password.",
+                "requestBody": {
+                    "content": {
+                        "multipart\/form-data": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": ""
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "example": ""
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "example": ""
+                                    }
+                                },
+                                "required": [
+                                    "name",
+                                    "email",
+                                    "password"
+                                ]
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Signup successful"
+                    },
+                    "400": {
+                        "description": "Invalid input"
+                    }
+                }
+            }
+        },
+        "\/api\/v1\/auth\/send-signup-otp": {
+            "post": {
+                "tags": [
+                    "App OTP Signup"
+                ],
+                "summary": "Send Signup OTP",
+                "description": "Send an OTP to the provided phone for signup verification.",
+                "requestBody": {
+                    "content": {
+                        "multipart\/form-data": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "country_code": {
+                                        "type": "string",
+                                        "example": ""
+                                    },
+                                    "phone": {
+                                        "type": "string",
+                                        "example": "01XXXXXXXXX"
+                                    }
+                                },
+                                "required": [
+                                    "phone"
+                                ]
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OTP sent successfully"
+                    },
+                    "400": {
+                        "description": "Invalid input"
+                    }
+                }
+            }
+        },
+        "\/api\/v1\/auth\/signup\/otp": {
+            "post": {
+                "tags": [
+                    "App OTP Signup"
+                ],
+                "summary": "Signup by OTP",
+                "description": "Complete the signup process by verifying the OTP sent to the user's email.",
+                "requestBody": {
+                    "content": {
+                        "multipart\/form-data": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": ""
+                                    },
+                                    "country_code": {
+                                        "type": "string",
+                                        "example": ""
+                                    },
+                                    "phone": {
+                                        "type": "string",
+                                        "example": ""
+                                    },
+                                    "otp": {
+                                        "type": "string",
+                                        "example": ""
+                                    }
+                                },
+                                "required": [
+                                    "name",
+                                    "phone",
+                                    "otp"
+                                ]
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Signup successful"
+                    },
+                    "400": {
+                        "description": "Invalid OTP or input"
+                    }
+                }
+            }
+        },
+        "\/api\/v1\/auth\/signin": {
+            "post": {
+                "tags": [
+                    "App OTP Signin"
+                ],
+                "summary": "SignIn by password",
+                "description": "Sign in to the platform by providing email and password.",
+                "requestBody": {
+                    "content": {
+                        "multipart\/form-data": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "example": ""
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "example": ""
+                                    }
+                                },
+                                "required": [
+                                    "email",
+                                    "password"
+                                ]
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Signin successful"
+                    },
+                    "400": {
+                        "description": "Invalid email or password"
+                    }
+                }
+            }
+        },
+        "\/api\/v1\/auth\/send-signin-otp": {
+            "post": {
+                "tags": [
+                    "App OTP Signin",
+                    "Web Otp Signin"
+                ],
+                "summary": "Send Signin OTP",
+                "description": "Send an OTP to the provided phone for signin verification.",
+                "requestBody": {
+                    "content": {
+                        "multipart\/form-data": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "country_code": {
+                                        "type": "string",
+                                        "example": ""
+                                    },
+                                    "phone": {
+                                        "type": "string",
+                                        "example": "01XXXXXXXXX"
+                                    }
+                                },
+                                "required": [
+                                    "phone"
+                                ]
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OTP sent successfully"
+                    },
+                    "400": {
+                        "description": "Invalid input"
+                    }
+                }
+            }
+        },
+        "\/api\/v1\/auth\/signin\/otp": {
+            "post": {
+                "tags": [
+                    "App OTP Signin"
+                ],
+                "summary": "Signin by OTP",
+                "description": "Complete the signin process by verifying the OTP sent to the user's email.",
+                "requestBody": {
+                    "content": {
+                        "multipart\/form-data": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "country_code": {
+                                        "type": "string",
+                                        "example": ""
+                                    },
+                                    "phone": {
+                                        "type": "string",
+                                        "example": ""
+                                    },
+                                    "otp": {
+                                        "type": "string",
+                                        "example": ""
+                                    }
+                                },
+                                "required": [
+                                    "phone",
+                                    "otp"
+                                ]
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Signin successful"
+                    },
+                    "400": {
+                        "description": "Invalid OTP or input"
+                    }
+                }
+            }
+        },
+        "\/api\/v1\/auth\/social-signin-via-access-token": {
+            "post": {
+                "tags": [
+                    "App OTP Signin"
+                ],
+                "summary": "Social Signin via Access Token",
+                "description": "Authenticate a user using their social media access token (Facebook, Google, or Apple).",
+                "requestBody": {
+                    "content": {
+                        "multipart\/form-data": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "provider": {
+                                        "type": "string",
+                                        "description": "The social media provider used for signin.",
+                                        "enum": [
+                                            "facebook",
+                                            "google",
+                                            "apple"
+                                        ],
+                                        "example": "google"
+                                    },
+                                    "access_token": {
+                                        "type": "string",
+                                        "description": "The access token provided by the social media platform.",
+                                        "example": "ya29.A0ARrdaM..."
+                                    }
+                                },
+                                "required": [
+                                    "provider",
+                                    "access_token"
+                                ]
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Signin successful",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Signin successful"
+                                        },
+                                        "token": {
+                                            "type": "string",
+                                            "description": "JWT token for authenticated access",
+                                            "example": "eyJhbGciOiJIUzI1NiIsInR5..."
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid provider or access token"
+                    }
+                }
+            }
+        },
+        "\/api\/v1\/auth\/otp-signin-web": {
+            "post": {
+                "tags": [
+                    "Web Otp Signin"
+                ],
+                "summary": "Signin by OTP",
+                "description": "Complete the signin process by verifying the OTP sent to the user's email.",
+                "requestBody": {
+                    "content": {
+                        "multipart\/form-data": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "country_code": {
+                                        "type": "string",
+                                        "example": ""
+                                    },
+                                    "phone": {
+                                        "type": "string",
+                                        "example": ""
+                                    },
+                                    "otp": {
+                                        "type": "string",
+                                        "example": ""
+                                    }
+                                },
+                                "required": [
+                                    "phone",
+                                    "otp"
+                                ]
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Signin successful"
+                    },
+                    "400": {
+                        "description": "Invalid OTP or input"
+                    }
+                }
+            }
+        },
+        "\/api\/v1\/auth\/send-reset-otp": {
+            "post": {
+                "tags": [
+                    "App OTP Reset Password",
+                    "Web OTP Reset Password"
+                ],
+                "summary": "Send Reset OTP",
+                "description": "Send a reset OTP to the provided phone for password reset.",
+                "requestBody": {
+                    "content": {
+                        "multipart\/form-data": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "country_code": {
+                                        "type": "string",
+                                        "example": ""
+                                    },
+                                    "phone": {
+                                        "type": "string",
+                                        "example": "01XXXXXXXXX"
+                                    }
+                                },
+                                "required": [
+                                    "phone"
+                                ]
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Reset OTP sent successfully"
+                    },
+                    "400": {
+                        "description": "Invalid input"
+                    }
+                }
+            }
+        },
+        "\/api\/v1\/auth\/verify-reset-otp": {
+            "post": {
+                "tags": [
+                    "App OTP Reset Password",
+                    "Web OTP Reset Password"
+                ],
+                "summary": "Verify Reset OTP",
+                "description": "Verify the OTP sent to the user's phone for password reset.",
+                "requestBody": {
+                    "content": {
+                        "multipart\/form-data": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "country_code": {
+                                        "type": "string",
+                                        "example": ""
+                                    },
+                                    "phone": {
+                                        "type": "string",
+                                        "example": ""
+                                    },
+                                    "otp": {
+                                        "type": "string",
+                                        "example": ""
+                                    }
+                                },
+                                "required": [
+                                    "phone",
+                                    "otp"
+                                ]
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OTP verified successfully"
+                    },
+                    "400": {
+                        "description": "Invalid OTP or input"
+                    }
+                }
+            }
+        },
+        "\/api\/v1\/auth\/otp-reset-password-app": {
+            "post": {
+                "tags": [
+                    "App OTP Reset Password"
+                ],
+                "summary": "Reset Password",
+                "description": "Reset the user's password by providing phone, OTP token, and new password.",
+                "requestBody": {
+                    "content": {
+                        "multipart\/form-data": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "country_code": {
+                                        "type": "string",
+                                        "example": ""
+                                    },
+                                    "phone": {
+                                        "type": "string",
+                                        "example": ""
+                                    },
+                                    "token": {
+                                        "type": "string",
+                                        "example": "",
+                                        "description": "token from 'api\/v1\/auth\/verify-reset-otp' api response"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "example": ""
+                                    },
+                                    "confirm_password": {
+                                        "type": "string",
+                                        "example": ""
+                                    }
+                                },
+                                "required": [
+                                    "phone",
+                                    "token",
+                                    "password",
+                                    "confirm_password"
+                                ]
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Password reset successful"
+                    },
+                    "400": {
+                        "description": "Invalid token or input"
+                    }
+                }
+            }
+        },
+        "\/api\/v1\/auth\/otp-reset-password-web": {
+            "post": {
+                "tags": [
+                    "Web OTP Reset Password"
+                ],
+                "summary": "Reset Password",
+                "description": "Reset the user's password by providing phone, OTP token, and new password.",
+                "requestBody": {
+                    "content": {
+                        "multipart\/form-data": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "country_code": {
+                                        "type": "string",
+                                        "example": ""
+                                    },
+                                    "phone": {
+                                        "type": "string",
+                                        "example": ""
+                                    },
+                                    "token": {
+                                        "type": "string",
+                                        "example": "",
+                                        "description": "token from 'api\/v1\/auth\/verify-reset-otp' api response"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "example": ""
+                                    },
+                                    "confirm_password": {
+                                        "type": "string",
+                                        "example": ""
+                                    }
+                                },
+                                "required": [
+                                    "phone",
+                                    "token",
+                                    "password",
+                                    "confirm_password"
+                                ]
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Password reset successful"
+                    },
+                    "400": {
+                        "description": "Invalid token or input"
+                    }
+                }
+            }
+        },
+        "\/api\/v1\/users": {
+            "get": {
+                "tags": [
+                    "users"
+                ],
+                "summary": "Get All Users",
+                "description": "Retrieve a list of all users.",
+                "parameters": [
+                    {
+                        "name": "multi-select",
+                        "in": "query",
+                        "description": "Filter users by status",
+                        "required": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "enum": [
+                                    "available",
+                                    "pending",
+                                    "sold"
+                                ]
+                            },
+                            "default": [
+                                "available"
+                            ],
+                            "example": [
+                                "available",
+                                "pending"
+                            ]
+                        },
+                        "style": "form",
+                        "explode": false
+                    },
+                    {
+                        "name": "single-select",
+                        "in": "query",
+                        "description": "Filter users by status",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "default": "available",
+                            "enum": [
+                                "available",
+                                "pending",
+                                "sold"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "search",
+                        "in": "query",
+                        "description": "Search users by name or email",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Invalid status value"
+                    }
+                },
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "users"
+                ],
+                "summary": "Create a new user",
+                "description": "Create a new user with provided details.",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart\/form-data": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "avatar": {
+                                        "type": "string",
+                                        "format": "binary",
+                                        "description": "Avatar image file of the user"
+                                    },
+                                    "name": {
+                                        "type": "string",
+                                        "description": "Name of the user",
+                                        "default": "John Doe"
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "description": "Email of the user",
+                                        "default": ""
+                                    },
+                                    "country_code": {
+                                        "type": "string",
+                                        "example": ""
+                                    },
+                                    "phone": {
+                                        "type": "string",
+                                        "description": "Phone number of the user",
+                                        "default": ""
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "description": "Password of the user",
+                                        "default": ""
+                                    }
+                                },
+                                "required": [
+                                    "name",
+                                    "email",
+                                    "password"
+                                ]
+                            }
+                        },
+                        "application\/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "avatar": [],
+                                    "name": [],
+                                    "email": [],
+                                    "country_code": [],
+                                    "phone": [],
+                                    "password": []
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "User created successfully"
+                    },
+                    "400": {
+                        "description": "Invalid input"
+                    }
+                },
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ]
+            }
+        },
+        "\/api\/v1\/users\/{id}": {
+            "put": {
+                "tags": [
+                    "users"
+                ],
+                "summary": "Update an existing user",
+                "description": "Update an existing user with provided details.",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the user to be updated",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application\/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "avatar": [],
+                                    "name": [],
+                                    "email": [],
+                                    "country_code": [],
+                                    "phone": [],
+                                    "password": []
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "User updated successfully"
+                    },
+                    "400": {
+                        "description": "Invalid input"
+                    },
+                    "404": {
+                        "description": "User not found"
+                    }
+                },
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "users"
+                ],
+                "summary": "Delete an existing user",
+                "description": "Delete a user by ID.",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the user to be deleted",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "User deleted successfully"
+                    },
+                    "404": {
+                        "description": "User not found"
+                    }
+                },
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ]
+            }
+        },
+        "\/api\/v1\/blog-categories": {
+            "get": {
+                "tags": [
+                    "blog_categories"
+                ],
+                "summary": "Get All BlogCategory",
+                "description": "Retrieve a list of all blog_categories.",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Invalid status value"
+                    }
+                },
+                "security": []
+            }
+        },
+        "\/api\/v1\/blog-categories\/{id}": {
+            "get": {
+                "tags": [
+                    "blog_categories"
+                ],
+                "summary": "Get BlogCategory details",
+                "description": "Retrieve details of blog_categories.",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the BlogCategory",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Invalid status value"
+                    }
+                },
+                "security": []
+            }
+        },
+        "\/api\/v1\/blogs": {
+            "get": {
+                "tags": [
+                    "blogs"
+                ],
+                "summary": "Get All Blog",
+                "description": "Retrieve a list of all blogs.",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Invalid status value"
+                    }
+                },
+                "security": []
+            }
+        },
+        "\/api\/v1\/blogs-trending-tags": {
+            "get": {
+                "tags": [
+                    "blogs"
+                ],
+                "summary": "",
+                "description": "",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Invalid status value"
+                    }
+                },
+                "security": []
+            }
+        },
+        "\/api\/v1\/blogs\/{id}": {
+            "get": {
+                "tags": [
+                    "blogs"
+                ],
+                "summary": "Get Blog details",
+                "description": "Retrieve details of blogs.",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the Blog",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Invalid status value"
+                    }
+                },
+                "security": []
+            }
+        },
+        "\/api\/v1\/blog-comments": {
+            "get": {
+                "tags": [
+                    "blog_comments"
+                ],
+                "summary": "Get All BlogComment",
+                "description": "Retrieve a list of all blog_comments.",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Invalid status value"
+                    }
+                },
+                "security": []
+            },
+            "post": {
+                "tags": [
+                    "blog_comments"
+                ],
+                "summary": "Store BlogComment",
+                "description": "Create a new BlogComment.",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart\/form-data": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "description": "Enter name",
+                                        "default": ""
+                                    },
+                                    "phone": {
+                                        "type": "string",
+                                        "description": "Enter phone",
+                                        "default": ""
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "description": "Enter email",
+                                        "default": ""
+                                    },
+                                    "user_id": {
+                                        "type": "string",
+                                        "description": "Enter user_id",
+                                        "default": ""
+                                    },
+                                    "parent_id": {
+                                        "type": "string",
+                                        "description": "Enter parent_id",
+                                        "default": ""
+                                    },
+                                    "status": {
+                                        "type": "string",
+                                        "description": "Select column_upper_case",
+                                        "enum": [
+                                            "option_1",
+                                            "option_2"
+                                        ],
+                                        "default": ""
+                                    },
+                                    "image": {
+                                        "type": "string",
+                                        "format": "binary",
+                                        "description": "Upload Image"
+                                    },
+                                    "description": {
+                                        "type": "string",
+                                        "description": "Enter description (up to 2000 characters)",
+                                        "maxLength": 2000,
+                                        "default": "",
+                                        "example": ""
+                                    }
+                                },
+                                "required": [
+                                    "name",
+                                    "user_id",
+                                    "status"
+                                ]
+                            }
+                        },
+                        "application\/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "name": [],
+                                    "phone": [],
+                                    "email": [],
+                                    "user_id": [],
+                                    "parent_id": [],
+                                    "status": [],
+                                    "image": [],
+                                    "description": []
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "result": true,
+                        "message": "User created successfully"
+                    },
+                    "400": {
+                        "result": false,
+                        "message": "User created successfully"
+                    }
+                },
+                "security": []
+            }
+        },
+        "\/api\/v1\/blog-comments\/{id}": {
+            "get": {
+                "tags": [
+                    "blog_comments"
+                ],
+                "summary": "Get BlogComment details",
+                "description": "Retrieve details of blog_comments.",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the BlogComment",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Invalid status value"
+                    }
+                },
+                "security": []
+            },
+            "put": {
+                "tags": [
+                    "blog_comments"
+                ],
+                "summary": "Get All BlogComment",
+                "description": "Create a new BlogComment.",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application\/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "name": [],
+                                    "phone": [],
+                                    "email": [],
+                                    "user_id": [],
+                                    "parent_id": [],
+                                    "status": [],
+                                    "image": [],
+                                    "description": []
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "User created successfully"
+                    },
+                    "400": {
+                        "description": "Invalid input"
+                    }
+                },
+                "security": []
+            },
+            "delete": {
+                "tags": [
+                    "blog_comments"
+                ],
+                "summary": "Delete an existing BlogComment",
+                "description": "Delete a blog_comments by ID.",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the BlogComment to be deleted",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "User deleted successfully"
+                    },
+                    "404": {
+                        "description": "User not found"
+                    }
+                },
+                "security": []
+            }
+        },
+        "\/api\/v1\/pages": {
+            "get": {
+                "tags": [
+                    "pages"
+                ],
+                "summary": "Get All Page",
+                "description": "Retrieve a list of all page",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Invalid status value"
+                    }
+                },
+                "security": []
+            }
+        },
+        "\/api\/v1\/pages\/{id}": {
+            "get": {
+                "tags": [
+                    "pages"
+                ],
+                "summary": "Get Page details",
+                "description": "Retrieve details of page",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the PageBuilder",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Invalid status value"
+                    }
+                },
+                "security": []
+            }
+        }
+    }
+}

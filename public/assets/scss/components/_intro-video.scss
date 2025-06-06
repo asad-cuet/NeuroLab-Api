@@ -1,0 +1,43 @@
+.intro-video {
+  &--uplifted {
+    margin-block-start: -220px;
+  }
+
+  &__item {
+    &-inner {
+      @extend %p-rel,
+      %of-hidden;
+      border-radius: 1rem;
+
+      >img {
+        @extend %w-100;
+        @include add-prefix(transition, $transition);
+        object-fit: cover;
+      }
+
+      &:hover {
+        >img {
+          @include add-prefix(transform, scale(1.02));
+          filter: blur(5px)
+        }
+      }
+    }
+  }
+
+
+  &__play {
+    @extend %p-abs;
+    @include box(80px);
+    @include add-prefix(transform, translate(-50%, -50%));
+    background-color: $white-color;
+    border-radius: 50%;
+    display: inline-grid;
+    place-items: center;
+    left: 50%;
+    top: 50%;
+
+    img {
+      max-inline-size: 40%;
+    }
+  }
+}

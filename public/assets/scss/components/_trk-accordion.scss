@@ -1,0 +1,296 @@
+.trk-accordion {
+  &__section {
+    overflow: hidden;
+    border-radius: 8px;
+    margin-bottom: 15px;
+
+  }
+
+  &__header {
+    @extend %d-flex,
+    %align-i-center;
+    flex-wrap: wrap;
+    gap: 15px;
+    background-color: $bg-color-2;
+    padding: 16px;
+    margin-block-end: 0;
+
+    @include breakpoint(sm) {
+      padding: 32px 24px;
+    }
+
+    &-toggle {
+      @extend %d-flex,
+      %align-i-center;
+      gap: 5px;
+      background: none;
+      border: none;
+      font-weight: bold;
+      flex-grow: 1;
+      text-align: left;
+      padding: 0;
+
+      @include breakpoint(md) {
+        flex: 1;
+      }
+
+      h5 {
+        margin-block-end: 0;
+
+        @include breakpoint(max-md) {
+          flex: 1;
+          @include text-clamp(2);
+        }
+
+        @include breakpoint(md) {
+          @include text-clamp(1);
+
+          max-inline-size: calc(100% - 10ch);
+        }
+
+      }
+
+      .number {
+        @extend %d-inline-flex,
+        %justify-center,
+        %text-center;
+        @include box(30px);
+        @include font-size(20px);
+        line-height: 30px;
+        border-radius: 50%;
+        border: 1px solid $border-color;
+        background-color: $white-color;
+        margin-inline-end: 10px;
+      }
+
+      .arrow {
+
+        i,
+        svg {
+          display: inline-block;
+          align-items: start;
+          @include font-size(20px);
+          margin-inline-start: 10px;
+          transition: transform 0.2s ease-in-out;
+        }
+      }
+
+
+      &.collapsed {
+        .arrow {
+
+          i,
+          svg {
+            transform: rotate(180deg);
+          }
+        }
+
+      }
+    }
+
+  }
+
+
+  &__body {
+    padding: 15px;
+    background-color: $bg-color-2;
+  }
+
+  &__content {
+    &-details {
+      background-color: $white-color;
+      border-radius: 8px;
+    }
+
+    &-actions {
+      margin-block-start: 24px;
+
+      .btn-custom {
+        border: 1px dashed $tertiary-color;
+        color: $tertiary-color;
+        transition: $transition;
+
+        &:hover {
+          border-color: $brand-color;
+          color: $brand-color;
+        }
+      }
+    }
+  }
+
+  &__item {
+    @extend %d-flex,
+    %justify-between;
+    padding: 20px;
+
+    &:not(:last-child) {
+      border-bottom: 1px solid $border-color-2;
+    }
+
+    @include breakpoint(sm) {
+      padding: 24px;
+    }
+
+    &-content {
+      @extend %d-flex,
+      %align-i-center;
+      // flex-wrap: wrap;
+      gap: 10px;
+
+      @include breakpoint(md) {
+        flex: 1;
+      }
+
+      .number {
+        @extend %text-center;
+        @include box(30px);
+        @include font-size(20px);
+        line-height: 30px;
+        border-radius: 50%;
+        background-color: $bg-color-2;
+        margin-inline-end: 10px;
+        margin-right: 10px;
+      }
+
+      h6 {
+        @extend %text-medium;
+        @include font-size(18px);
+        color: $brand-color;
+        margin-block-end: 0;
+        line-height: 1;
+        flex: 1;
+        transition: $transition;
+
+        .trk-icon {
+
+          i,
+          svg {
+            @include font-size(22px);
+            display: inline-flex;
+            align-items: center;
+            margin-inline-end: 5px;
+            color: $brand-color;
+          }
+        }
+
+        .arrow {
+
+          i,
+          svg {
+            display: inline-flex;
+            margin-inline-end: 5px;
+            color: $brand-color;
+          }
+        }
+
+        .pulse {
+          display: inline-block;
+          width: 10px;
+          height: 10px;
+          background-color: $danger;
+          border-radius: 50%;
+          margin-inline-start: 4px;
+          margin-inline-end: 10px;
+          position: relative;
+
+          &::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 15px;
+            height: 15px;
+            background-color: rgba(255, 0, 0, 0.4);
+            border-radius: 50%;
+            transform: translate(-50%, -50%) scale(1);
+            animation: pulse 1.5s infinite;
+            transition: $transition;
+          }
+        }
+
+        @keyframes pulse {
+          0% {
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 1;
+          }
+
+          100% {
+            transform: translate(-50%, -50%) scale(1.5);
+            opacity: 0;
+          }
+        }
+
+
+        @include breakpoint(max-md) {
+          @include text-clamp(2);
+        }
+
+        @include breakpoint(md) {
+          @include text-clamp(1);
+
+          max-inline-size: calc(100% - 10ch);
+        }
+      }
+
+      .arrow {
+
+        i,
+        svg {
+          display: inline-flex;
+          margin-inline-end: 5px;
+          color: $brand-color;
+        }
+      }
+
+      &.collapsed {
+        h6 {
+          color: $title-color;
+
+          .trk-icon {
+
+            i,
+            svg {
+              color: $title-color;
+            }
+          }
+        }
+
+        .arrow {
+
+          i,
+          svg {
+            color: $title-color;
+          }
+        }
+      }
+    }
+
+  }
+
+  &__add-section {
+    margin-top: 32px;
+
+    .btn-custom {
+      border: 1px dashed $tertiary-color;
+      background-color: $bg-color-2;
+      border-radius: 8px;
+      padding: 1.6rem 1.5rem;
+      color: $tertiary-color;
+
+      @include breakpoint(sm) {
+        padding: 1.8rem 1.5rem;
+      }
+
+      @include breakpoint(lg) {
+        padding: 2.3rem 1.5rem;
+      }
+
+      &:hover {
+        border-color: $brand-color;
+        color: $brand-color;
+      }
+    }
+
+  }
+
+}

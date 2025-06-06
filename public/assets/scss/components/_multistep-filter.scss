@@ -1,0 +1,77 @@
+.multistep-filter {
+  padding: 32px;
+  background-color: $bg-color;
+  border-radius: 0.75rem;
+
+
+  &__form {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: $white-color;
+    border: 1px solid $brand-color;
+    border-radius: 12px;
+    max-width: 900px;
+    margin: 0 auto;
+
+    @media (max-width: 576px) {
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+
+    &-group {
+      flex: 1;
+      padding: 0;
+      position: relative;
+
+      &:not(:last-child) .form-select {
+        border-right: 1px solid $border-color-2;
+      }
+
+      @media (max-width: 576px) {
+        width: 100%;
+      }
+
+      .form-select {
+        border: 0;
+        padding: 0;
+
+        option{
+          padding: 6px;
+        }
+      }
+
+      .ts-wrapper.form-control,
+      .ts-wrapper.form-select {
+        border: 0;
+
+        .ts-control {
+          padding: 0;
+        }
+      }
+
+
+    }
+
+  }
+
+
+  &__label {
+    @include font-size(14px);
+    color: $text-color-muted;
+    margin-bottom: 0.25rem;
+    display: block;
+  }
+
+
+
+  .btn {
+
+    @include breakpoint(md) {
+      padding-block: 25px;
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+  }
+}

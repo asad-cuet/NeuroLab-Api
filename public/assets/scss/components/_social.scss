@@ -1,0 +1,62 @@
+.social {
+  @extend %flex;
+  @extend %align-i-center;
+  @extend %list-none;
+  @extend %ps-0;
+  @extend %mb-0;
+  gap: 15px;
+
+  &__link {
+    @extend %text-center;
+    @include box(45px);
+    @include add-prefix(transition, background-color .2s linear);
+    display: grid;
+    place-items: center;
+    border-radius: 5px;
+    background-color: transparent;
+    border: 2px solid rgba($brand-color, $alpha: .70);
+    @include font-size(18px);
+
+    svg,
+    i {
+      color: $body-color;
+      font-size: inherit;
+    }
+
+    &:hover {
+      background-color: $brand-color;
+
+      svg,
+      i {
+        color: $white-color;
+      }
+    }
+  }
+
+  &--style2{
+    gap: 10px;
+
+    .social{
+      &__link{
+        @include box(32px);
+        line-height: 32px;
+        border: 1px solid $border-color;
+        border-radius: 6px;
+        transition: $transition;
+
+        i,svg{
+          color: $text-color;
+        }
+        &:hover{
+          background-color: $brand-color;
+          border-color: $brand-color;
+          i,svg{
+            color: $white-color;
+          }
+        }
+      }
+    }
+  }
+}
+
+

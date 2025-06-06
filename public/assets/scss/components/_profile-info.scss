@@ -1,0 +1,63 @@
+  .custom-nav {
+    @include breakpoint(sm) {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    @include breakpoint(md) {
+      display: flex;
+    }
+
+    .nav-link {
+      @extend %p-rel,
+      %d-flex;
+      gap: 10px;
+      color: $text-color-muted;
+      text-transform: capitalize;
+      padding: .56rem 1rem;
+      border: 1px solid $border-color;
+
+      @include breakpoint(max-md) {
+        min-width: 100%;
+      }
+      .trk-icon{
+        i,svg{
+          @include font-size(18px);
+          color: $text-color-muted;
+        }
+      }
+
+      span {
+        @extend %text-left;
+      }
+
+      &.active {
+        border-color: $brand-color;
+
+        i,
+        svg {
+          color: inherit;
+        }
+      }
+    }
+
+    &--style2 {
+      .nav-link {
+        padding: 12px 16px;
+        border: 1px solid $border-color;
+        &:not(:last-child){
+          margin-block-end: 5px;
+        }
+
+        &.active {
+          background-color: $tertiary-color;
+          border-color: $tertiary-color;
+
+          i,
+          svg {
+            color: inherit;
+          }
+        }
+      }
+    }
+  }

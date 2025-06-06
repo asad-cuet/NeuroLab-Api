@@ -1,0 +1,69 @@
+{
+    "\/api\/v1\/blogs": {
+        "get": {
+            "tags": [
+                "blogs"
+            ],
+            "summary": "Get All Blog",
+            "description": "Retrieve a list of all blogs.",
+            "parameters": [],
+            "responses": {
+                "200": {
+                    "description": "Successful operation"
+                },
+                "400": {
+                    "description": "Invalid status value"
+                }
+            },
+            "security": []
+        }
+    },
+    "\/api\/v1\/blogs-trending-tags": {
+        "get": {
+            "tags": [
+                "blogs"
+            ],
+            "summary": "",
+            "description": "",
+            "parameters": [],
+            "responses": {
+                "200": {
+                    "description": "Successful operation"
+                },
+                "400": {
+                    "description": "Invalid status value"
+                }
+            },
+            "security": []
+        }
+    },
+    "\/api\/v1\/blogs\/{id}": {
+        "get": {
+            "tags": [
+                "blogs"
+            ],
+            "summary": "Get Blog details",
+            "description": "Retrieve details of blogs.",
+            "parameters": [
+                {
+                    "name": "id",
+                    "in": "path",
+                    "description": "ID of the Blog",
+                    "required": true,
+                    "schema": {
+                        "type": "integer"
+                    }
+                }
+            ],
+            "responses": {
+                "200": {
+                    "description": "Successful operation"
+                },
+                "400": {
+                    "description": "Invalid status value"
+                }
+            },
+            "security": []
+        }
+    }
+}

@@ -1,0 +1,346 @@
+.todo-item {
+
+  &__content {
+    a {
+      @extend %text-bold;
+      @include font-size(18px);
+    }
+
+    &-date {
+      @include font-size(12px);
+      color: $text-color-muted;
+    }
+  }
+
+  .form-check-input {
+    height: 1.5rem;
+    width: 1.5rem;
+  }
+
+  .btn {
+    color: $border-color-2;
+    color: $danger;
+    display: none;
+
+    i,
+    svg {
+      font-size: 22px;
+    }
+
+  }
+
+  &:hover {
+    .btn {
+      display: block;
+    }
+  }
+
+  &.completed {
+    background-color: rgba($danger, $alpha: .15);
+    border-radius: 8px;
+    padding-block: 5px;
+    padding-inline-end: 10px;
+
+  }
+}
+
+
+
+// ========== todo ===============
+
+.todo {
+  ul {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+
+    li {
+      &:not(:last-child) {
+        margin-block-end: 24px;
+      }
+    }
+  }
+
+  &__item {
+    &-icon {
+      position: relative;
+      padding: 22px;
+      // border-radius: 50px;
+      border-radius: 16px;
+
+      label {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        cursor: pointer;
+        padding-left: 0;
+
+        .form-check-input {
+          display: block;
+          margin: 0;
+          pointer-events: none;
+        }
+      }
+    }
+
+    &-text {
+      p {
+        @include font-size(18px);
+      }
+
+      span {
+        @include font-size(14px);
+        color: $text-color-muted;
+      }
+    }
+
+    &-delete {
+      button {
+        background-color: transparent;
+        color: $text-color-muted;
+        border-radius: 8px;
+        border: 1px solid $border-color-2;
+        display: grid;
+        place-items: center;
+        padding: 7px;
+        transition: $transition;
+
+        i,
+        svg {
+          color: inherit;
+        }
+      }
+    }
+
+
+    &:hover {
+      .todo__item-delete {
+        button {
+          border-color: $danger;
+
+          i,
+          svg {
+            color: $danger;
+          }
+        }
+      }
+    }
+
+    &--running {
+      & .todo__item-icon {
+        background-color: $bg-color;
+      }
+
+      .form-check-input {
+        &:checked {
+          background-color: $brand-color !important;
+          border-color: $brand-color !important;
+        }
+      }
+    }
+
+    &--completed {
+      & .todo__item-icon {
+        background-color: rgba($success, $alpha: .15)
+      }
+
+      .form-check-input {
+        &:checked {
+          background-color: $success !important;
+          border-color: $success !important;
+        }
+      }
+    }
+
+    &--late {
+      & .todo__item-icon {
+        background-color: rgba($warning, $alpha: .15)
+      }
+
+      .form-check-input {
+        &:checked {
+          background-color: $warning !important;
+          border-color: $warning !important;
+        }
+      }
+    }
+  }
+
+  &--style2 {
+    .todo {
+      &__item {
+        border: 1px solid $border-color-2;
+        border-radius: 12px;
+        padding: 8px;
+      }
+    }
+  }
+}
+
+
+// .activity-timeline {
+//   position: relative;
+//   padding: 20px;
+//   background-color: #f7faff; /* Light background */
+//   border-radius: 10px;
+
+//   &__item {
+//     position: relative;
+//     display: flex;
+//     margin-bottom: 20px;
+
+//     &:last-child {
+//       margin-bottom: 0;
+//     }
+//   }
+
+//   &__line {
+//     position: absolute;
+//     left: 20px;
+//     top: 0;
+//     bottom: 0;
+//     width: 2px;
+//     background-color: #5851ff;
+//   }
+
+//   &__content {
+//     display: flex;
+//     padding-left: 50px; /* Space for the timeline line */
+//   }
+
+//   &__img {
+//     width: 40px;
+//     height: 40px;
+//     border-radius: 50%;
+//     object-fit: cover;
+//     margin-right: 15px;
+//   }
+
+//   &__details {
+//     display: flex;
+//     flex-direction: column;
+//   }
+
+//   &__title {
+//     font-size: 14px;
+//     font-weight: 600;
+//     color: #2d2d2d;
+//     margin-bottom: 5px;
+//     white-space: nowrap;
+//     overflow: hidden;
+//     text-overflow: ellipsis;
+//   }
+
+//   &__time {
+//     font-size: 12px;
+//     color: #9ca3af;
+//   }
+// }
+
+
+.timeline {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  &:before {
+    content: "";
+    position: absolute;
+    left: 5px;
+    top: 0.6rem;
+    width: 1px;
+    height: calc(100% - 4.6rem);
+    background-color: $border-color-2;
+  }
+
+  &__item {
+    display: flex;
+    align-items: flex-start;
+    position: relative;
+
+    &:not(:last-child) {
+      .timeline__content {
+        padding-block-end: 10px;
+        border-bottom: 1px dashed $border-color-2;
+      }
+    }
+
+  }
+
+  &__icon {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-right: 1rem;
+    border: 2px solid transparent;
+    background-color: $white-color;
+    margin-inline-start: -1px;
+    margin-block-start: 5px;
+
+    &--blue {
+      border-color: $brand-color;
+    }
+
+    &--red {
+      border-color: $danger;
+    }
+
+    &--orange {
+      border-color: $warning;
+    }
+
+    &--green {
+      border-color: $success;
+    }
+
+    &--purple {
+      border-color: #9966cc;
+    }
+  }
+
+  &__content {
+    flex: 1;
+  }
+
+  &__time {
+    color: $text-color;
+    margin-block-end: 3px;
+  }
+
+  &__text {
+    color: $text-color-muted;
+    margin-block-end: 0;
+
+    .timeline__highlight {
+      font-weight: bold;
+    }
+
+    .timeline__link {
+      color: $brand-color;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  &--style2 {
+    &:before {
+      content: "";
+      position: absolute;
+      left: 5px;
+      top: 0.6rem;
+      width: 1px;
+      height: calc(100% - 3.6rem);
+      background-color: $border-color-2;
+    }
+  }
+}
