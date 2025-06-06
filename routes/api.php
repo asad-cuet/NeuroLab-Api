@@ -11,6 +11,10 @@ use App\Http\Controllers\Api\V1\Auth\BreezeCustomController;
 use App\Http\Controllers\Api\V1\Auth\AccountController;
 
 
+use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\V1\UserClassificationController;
+
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -22,76 +26,25 @@ use App\Http\Controllers\Api\V1\Auth\AccountController;
 |
 */
 
-Route::middleware(['auth:sanctum','verified'])->get('/user', function (Request $request) {
+Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
     return $request->user();
 });
-//Signup
-Route::group(['prefix' => 'v1'], function () {
-
-    Route::group(['prefix' => '/auth'], function () {
-
-        Route::controller(AuthCenterController::class)->group(function () {
-            Route::post('/signup/{provider?}', 'signUp');
-            Route::post('/signin/{provider?}', 'signIn');
-
-            Route::middleware('auth:sanctum')->group(function () {
-                Route::get('/signout', 'signOut');
-            });
-        });
-
-
-        if(env('AUTH_PHONE_SUPPORT'))
-        {
-            Route::controller(OtpAuthController::class)->group(function () {
-                Route::post('/send-signup-otp', 'sendSignUpOtp');
-                Route::post('/send-signin-otp', 'sendSignInOtp');
-                Route::post('/send-reset-otp', 'sendResetOtp');
-                Route::post('/verify-reset-otp', 'verifyResetOtp');
-                Route::post('/otp-reset-password-app', 'resetPassword');
-            });
-
-            Route::controller(BreezeCustomController::class)->group(function () {
-                Route::post('/otp-signin-web', 'signIn');
-                Route::post('/otp-reset-password-web', 'resetPassword');
-            });
-        }
 
 
 
-        Route::controller(SocialAuthController::class)->group(function () {
-            Route::post('/social-signin-via-access-token', 'signInByAccessToken');
-            Route::get('/social-signin-via-redirect/{provider}', 'signInByRedirect');
-            Route::post('/social-signin/{provider}/callback', 'handleProviderCallback');
-            Route::get('/social-signin/{provider}/callback', 'handleProviderCallback');
-        });
+Route::post('/register', [AuthController::class, 'register']);
+Route::post('/login', [AuthController::class, 'login']);
+Route::post('/logout', [AuthController::class, 'logout'])->middleware(['auth:sanctum']);
 
-        Route::controller(AccountController::class)
-            ->middleware('auth:sanctum')
-            ->group(function () {
-                Route::post('/profile-update', 'profileAccountUpdate');
-                Route::post('/change-password', 'changePassword');
-        });
-    });
 
-    Route::controller(\App\Http\Controllers\Api\V1\DevApiController::class)->group(function () {
-        Route::get('/create-token/{user_id}', 'createToken');
-    });
-
-    
-    Route::apiResource('users', 'App\Http\Controllers\Api\V1\UserController')->middleware('auth:sanctum','verified');
-
-    Route::apiResource('blog-categories', 'App\Http\Controllers\Api\V1\BlogCategoryController')->only(['index','show']);
-        
-    Route::apiResource('blogs', 'App\Http\Controllers\Api\V1\BlogController')->only(['index','show']);
-    Route::get('blogs-trending-tags', 'App\Http\Controllers\Api\V1\BlogController@blogTrendingTags');
-        
-    Route::apiResource('blog-comments', 'App\Http\Controllers\Api\V1\BlogCommentController')->only(['index','show']);
-
-    Route::apiResource('pages', 'App\Http\Controllers\Api\V1\PageController');
-
-    
-    //DYNAMIC_API
-
+Route::prefix('classifications')->middleware(['auth:sanctum'])->group(function () {
+    Route::get('/monthly', [UserClassificationController::class, 'getMonthlyData']);
+    Route::get('/today', [UserClassificationController::class, 'getTodayData']);
+    Route::get('/week', [UserClassificationController::class, 'getWeekData']);
+    Route::post('/', [UserClassificationController::class, 'addClassification']);
+    Route::get('/summary/{year}/{month}', [UserClassificationController::class, 'getMonthSummary']);
+    Route::get('/report/month/{year}/{month}', [UserClassificationController::class, 'getSpecificMonthReport']);
+    Route::get('/report/day/{year}/{month}/{day}', [UserClassificationController::class, 'getSpecificDayReport']);
 });
 
 
