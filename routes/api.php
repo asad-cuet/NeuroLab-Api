@@ -45,6 +45,7 @@ Route::prefix('classifications')->middleware(['auth:sanctum'])->group(function (
     Route::get('/summary/{year}/{month}', [UserClassificationController::class, 'getMonthSummary']);
     Route::get('/report/month/{year}/{month}', [UserClassificationController::class, 'getSpecificMonthReport']);
     Route::get('/report/day/{year}/{month}/{day}', [UserClassificationController::class, 'getSpecificDayReport']);
+    Route::post('/store-classification', [UserClassificationController::class, 'store']);
 });
 
 

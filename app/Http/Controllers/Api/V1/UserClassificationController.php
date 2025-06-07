@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Api\V1;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\UserClassification;
+use Illuminate\Support\Facades\Validator;
 
 class UserClassificationController extends Controller
 {
@@ -62,11 +64,16 @@ class UserClassificationController extends Controller
 
     public function addClassification(Request $request)
     {
-        $request->validate([
+
+        $validator = Validator::make($request->all(), [
             'stress_score' => 'required|integer',
             'user_id' => 'required|integer',
             'features' => 'required|array'
         ]);
+
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors()], 422);
+        }
 
         $result = DB::insert("
             INSERT INTO user_classifications (stress_score, user_id, features) VALUES (?, ?, ?)
@@ -77,6 +84,38 @@ class UserClassificationController extends Controller
         ]);
 
         return response()->json(['success' => $result]);
+    }
+
+    public function store(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'raw_eeg' => 'nullable|array',
+            'features' => 'nullable|array',
+            'score' => 'required',
+            'sampling_duration_sec' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors()], 422);
+        }
+
+
+
+        $userId = auth()->id(); // Or pass from request if Auth not used
+
+        $classification = UserClassification::create([
+            'user_id' => $userId,
+            'raw_eeg' => json_encode($request->raw_eeg),
+            'features' => json_encode($request->features),
+            'sampling_duration_sec' => $request->sampling_duration_sec,
+            'stress_score' => $request->score,
+        ]);
+
+        return response()->json([
+            'result' => true,
+            'message' => 'Classification stored successfully.',
+            'data' => $classification
+        ],200);
     }
 
     public function getMonthSummary($year, $month)
