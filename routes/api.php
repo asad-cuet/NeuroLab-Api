@@ -37,15 +37,15 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout'])->middleware(['auth:sanctum']);
 
 
-Route::prefix('classifications')->middleware(['auth:sanctum'])->group(function () {
-    Route::get('/monthly', [UserClassificationController::class, 'getMonthlyData']);
-    Route::get('/today', [UserClassificationController::class, 'getTodayData']);
-    Route::get('/week', [UserClassificationController::class, 'getWeekData']);
-    Route::post('/', [UserClassificationController::class, 'addClassification']);
-    Route::get('/summary/{year}/{month}', [UserClassificationController::class, 'getMonthSummary']);
-    Route::get('/report/month/{year}/{month}', [UserClassificationController::class, 'getSpecificMonthReport']);
-    Route::get('/report/day/{year}/{month}/{day}', [UserClassificationController::class, 'getSpecificDayReport']);
-    Route::post('/store-classification', [UserClassificationController::class, 'store']);
+Route::prefix('classifications')->group(function () {
+    Route::get('/monthly/{user_id}', [UserClassificationController::class, 'getMonthlyData']);
+    Route::get('/today/{user_id}', [UserClassificationController::class, 'getTodayData']);
+    Route::get('/week/{user_id}', [UserClassificationController::class, 'getWeekData']);
+    Route::get('/summary/{year}/{month}/{user_id}', [UserClassificationController::class, 'getMonthSummary']);
+    Route::get('/report/month/{year}/{month}/{user_id}', [UserClassificationController::class, 'getSpecificMonthReport']);
+    Route::get('/report/day/{year}/{month}/{day}/{user_id}', [UserClassificationController::class, 'getSpecificDayReport']);
+    Route::post('/store-classification', [UserClassificationController::class, 'store'])->middleware(['auth:sanctum']);
+    Route::get('/all-user-stats', [UserClassificationController::class, 'allUserStats'])->middleware(['auth:sanctum']);
 });
 
 

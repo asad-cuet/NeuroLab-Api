@@ -14,6 +14,7 @@ return new class extends Migration
             $table->string('avatar')->nullable();
             $table->string('name');
             $table->string('email')->unique()->nullable();
+            $table->integer('is_admin')->default(0);
             $table->string('country_code')->nullable();
             $table->string('phone')->nullable();
             $table->string('notify_by')->nullable();

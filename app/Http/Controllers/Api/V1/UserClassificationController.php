@@ -9,9 +9,8 @@ use Illuminate\Support\Facades\Validator;
 
 class UserClassificationController extends Controller
 {
-    public function getMonthlyData()
+    public function getMonthlyData($user_id)
     {
-        $user_id= auth()->id();
         $data = DB::select("
             SELECT 
                 YEAR(created_at) AS year, 
@@ -28,9 +27,8 @@ class UserClassificationController extends Controller
         return response()->json($data);
     }
 
-    public function getTodayData()
+    public function getTodayData($user_id)
     {
-        $user_id= auth()->id();
         $data = DB::select("
             SELECT 
                 SUM(CASE WHEN stress_score = 2 THEN sampling_duration_sec ELSE 0 END) / 3600 AS focus_time, 
@@ -45,9 +43,8 @@ class UserClassificationController extends Controller
         return response()->json($data);
     }
 
-    public function getWeekData()
+    public function getWeekData($user_id)
     {
-        $user_id= auth()->id();
         $data = DB::select("
             SELECT 
                 DAYOFWEEK(created_at) AS day_of_week, 
@@ -60,30 +57,6 @@ class UserClassificationController extends Controller
         ", [$user_id]);
 
         return response()->json($data);
-    }
-
-    public function addClassification(Request $request)
-    {
-
-        $validator = Validator::make($request->all(), [
-            'stress_score' => 'required|integer',
-            'user_id' => 'required|integer',
-            'features' => 'required|array'
-        ]);
-
-        if ($validator->fails()) {
-            return response()->json(['errors' => $validator->errors()], 422);
-        }
-
-        $result = DB::insert("
-            INSERT INTO user_classifications (stress_score, user_id, features) VALUES (?, ?, ?)
-        ", [
-            $request->stress_score,
-            $request->user_id,
-            json_encode($request->features)
-        ]);
-
-        return response()->json(['success' => $result]);
     }
 
     public function store(Request $request)
@@ -118,9 +91,8 @@ class UserClassificationController extends Controller
         ],200);
     }
 
-    public function getMonthSummary($year, $month)
+    public function getMonthSummary($year, $month, $user_id)
     {
-        $user_id= auth()->id();
         $data = DB::select("
             SELECT 
                 SUM(CASE WHEN stress_score = 2 THEN sampling_duration_sec ELSE 0 END) / 3600 AS focus_time, 
@@ -135,9 +107,8 @@ class UserClassificationController extends Controller
         return response()->json($data);
     }
 
-    public function getSpecificMonthReport($year, $month)
+    public function getSpecificMonthReport($year, $month, $user_id)
     {
-        $user_id= auth()->id();
         $data = DB::select("
             SELECT 
                 MONTH(created_at) AS month,
@@ -154,9 +125,8 @@ class UserClassificationController extends Controller
         return response()->json($data);
     }
 
-    public function getSpecificDayReport($year, $month, $day)
+    public function getSpecificDayReport($year, $month, $day, $user_id)
     {
-        $user_id= auth()->id();
         $data = DB::select("
             SELECT 
                 SUM(CASE WHEN stress_score = 2 THEN sampling_duration_sec ELSE 0 END) / 3600 AS total_focus_time, 
@@ -169,5 +139,68 @@ class UserClassificationController extends Controller
         ", [$user_id, $year, $month, $day]);
 
         return response()->json($data[0] ?? []);
+    }
+
+
+    public function allUserStats()
+    {
+        $user=auth()->user();
+        if($user->is_admin!=1) 
+        {
+            return response()->json([
+                'result' => false,
+                'error' => 'Unauthorized',
+                'message' => 'You do not have permission to access this resource.'
+            ], 403);
+        }
+
+
+        try {
+            $results = DB::select("
+                SELECT 
+                    users.id AS user_id,
+                    users.name,
+
+                    COALESCE(SUM(CASE WHEN uc.stress_score = 2 THEN uc.sampling_duration_sec ELSE 0 END) / 3600, 0) AS focus_time,
+                    COALESCE(SUM(CASE WHEN uc.stress_score = 1 THEN uc.sampling_duration_sec ELSE 0 END) / 3600, 0) AS medium_focus_time,
+                    COALESCE(SUM(CASE WHEN uc.stress_score = 0 THEN uc.sampling_duration_sec ELSE 0 END) / 3600, 0) AS distracted_time,
+
+                    COALESCE(
+                        (
+                            SUM(CASE WHEN uc.stress_score IN (1, 2) THEN uc.sampling_duration_sec ELSE 0 END) * 100.0
+                        ) /
+                        NULLIF(SUM(CASE WHEN uc.stress_score IN (0, 1, 2) THEN uc.sampling_duration_sec ELSE 0 END), 0),
+                        0
+                    ) AS effective_working_percentage,
+
+                    CASE 
+                        WHEN TIMESTAMPDIFF(SECOND, MAX(uc.created_at), NOW()) <= 6 THEN 1
+                        ELSE 0
+                    END AS is_active,
+                    TIMESTAMPDIFF(SECOND, MAX(uc.created_at), NOW()) AS last_active_diff_sec
+
+                FROM users
+                LEFT JOIN user_classifications uc 
+                    ON users.id = uc.user_id AND DATE(uc.created_at) = CURDATE()
+
+                WHERE users.is_admin = 0
+
+                GROUP BY users.id, users.name
+            ");
+
+
+            return response()->json([
+                'result' => true,
+                'message' => 'success',
+                'data' => $results,
+            ], 200);
+
+        } catch (\Exception $e) {
+            return response()->json([
+                'result' => false,
+                'error' => 'Error fetching user stats',
+                'message' => $e->getMessage(),
+            ], 500);
+        }
     }
 }
