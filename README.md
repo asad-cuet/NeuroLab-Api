@@ -4,13 +4,6 @@
 
 **Attenlytics-API** is a web application built with Laravel, designed to analyze the **attention** and **relaxation states** of participants using brainwave data with software **Attenlytics**. The software helps in monitoring and evaluating cognitive states in real-time, useful for research and productivity analysis.
 
-## Features
-
-- Analysis of attention and relaxation states  
-- Participant data tracking  
-- EEG data integration and visualization  
-- Real-time session monitoring  
-
 ---
 
 ## Tech Stack
