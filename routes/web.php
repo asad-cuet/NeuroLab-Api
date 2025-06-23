@@ -225,11 +225,6 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin', 'middleware' => 'auth:admin
         Route::put('/theme-settings','themeUpdate')->name('theme.settings.update');
     });
 
-    Route::resource('website-settings', WebsiteSettingController::class);
-    Route::controller(WebsiteSettingController::class)->group(function () {
-        Route::put('/website-policy-settings','policyUpdate')->name('website-policy.settings.update');
-        Route::put('/website-theme-settings','themeUpdate')->name('website-theme.settings.update');
-    });
 
 
     Route::resource('email-settings', EmailSettingController::class)->only(['index', 'store']);
@@ -248,24 +243,8 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin', 'middleware' => 'auth:admin
     Route::controller(CommonThingsController::class)->group(function () {
         Route::post('/toggle/switch/status','toggleSwitchStatus')->name('toggle.switch.status');
     });
-
-    Route::resource('blog-categories', \App\Http\Controllers\Admin\BlogCategoryController::class);
-    Route::resource('blogs', \App\Http\Controllers\Admin\BlogController::class);
-    Route::resource('blog-comments', \App\Http\Controllers\Admin\BlogCommentController::class);
-    Route::resource('media-library', \App\Http\Controllers\Admin\MediaLibraryController::class);
     
 
-    Route::get('create-token/{user_id}',function($user_id) {
-
-        $user=\App\Models\User::find($user_id);
-
-        $token = $user->createToken('API Token')->plainTextToken;
-
-        return response()->json([
-            'user' => $user,
-            'token' => $token
-        ]);
-    });
     Route::get('test-pusher/{user_id}',function($user_id) {
 
         pushAdminNotify($user_id);
