@@ -71,13 +71,13 @@ Laravel is a modern PHP framework that emphasizes developer experience, scalabil
 
 ---
 
----
-
 ## Credentials
 
     - Superadmin:
         email: superadmin@gmail.com
         password: 12345678
+
+---
 
 ## License
 
