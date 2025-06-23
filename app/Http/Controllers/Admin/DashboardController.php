@@ -29,6 +29,7 @@ class DashboardController extends Controller
     public function index(Request $req)
     {
 
+        return redirect()->route('admin.users.index');
         //fetch the most visited pages for today and the past week
         // $analytics=Analytics::fetchMostVisitedPages(Period::days(7));
         // $analytics=Analytics::fetchVisitorsAndPageViews(Period::days(7));

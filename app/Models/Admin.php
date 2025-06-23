@@ -12,13 +12,12 @@ use Coderflex\Laravisit\Concerns\CanVisit;
 use Coderflex\Laravisit\Concerns\HasVisits;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Image\Manipulations;
 
 
 class Admin extends Authenticatable implements CanVisit, HasMedia
 {
-    use Notifiable, HasRoles, TorkActivityLogTrait, HasVisits, InteractsWithMedia, SoftDeletes;
+    use Notifiable, HasRoles, TorkActivityLogTrait, HasVisits, InteractsWithMedia;
 
 
 
