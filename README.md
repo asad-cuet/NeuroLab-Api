@@ -49,7 +49,7 @@ Laravel is a modern PHP framework that emphasizes developer experience, scalabil
 1. Clone the repository:
    ```bash
    git clone <repo-url>
-   cd attenlytics
+   cd <project-folder-name>
    ```
 
 2. Install dependencies:
