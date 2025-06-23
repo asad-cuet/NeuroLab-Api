@@ -103,28 +103,22 @@ class UserController extends Controller
         $user->name = $request->name;
         $user->email = $request->email;
         $user->is_active = $request->is_active?? 1;
-        $user->phone = $request->phone;
         $user->password = Hash::make($request->password);
 
-        // if ($request->hasFile('avatar')) {
-        //     $user->addMediaFromRequest('avatar')
-        //     // ->withResponsiveImages()
-        //     ->toMediaCollection('avatars');
-        // }
 
-        if($request->hasfile('avatar'))
-        {
-            $image_response=FileManager::saveFile(
-                $request->file('avatar'),
-                'storage/Admins',
-                ['png','jpg','jpeg','gif']
-            );
-            if(isset($image_response['result']) && !$image_response['result'])
-            {
-                return back()->with('warning',$image_response['message']);
-            }
-            $user->avatar = $image_response['filename'];
-        }
+        // if($request->hasfile('avatar'))
+        // {
+        //     $image_response=FileManager::saveFile(
+        //         $request->file('avatar'),
+        //         'storage/Admins',
+        //         ['png','jpg','jpeg','gif']
+        //     );
+        //     if(isset($image_response['result']) && !$image_response['result'])
+        //     {
+        //         return back()->with('warning',$image_response['message']);
+        //     }
+        //     $user->avatar = $image_response['filename'];
+        // }
 
 
         $user->save();
@@ -208,31 +202,30 @@ class UserController extends Controller
 
         $row->name = $request->name;
         $row->email = $request->email;
-        $row->phone = $request->phone;
 
         // if ($request->hasFile('avatar')) {
         //     $row->addMediaFromRequest('avatar')->withResponsiveImages()->toMediaCollection('avatars');
         // }
 
 
-        if($request->hasfile('avatar'))
-        {
-            $image_response=FileManager::saveFile(
-                $request->file('avatar'),
-                'storage/Admins',
-                ['png','jpg','jpeg','gif']
-            );
-            if(isset($image_response['result']) && !$image_response['result'])
-            {
-                return back()->with('warning',$image_response['message']);
-            }
+        // if($request->hasfile('avatar'))
+        // {
+        //     $image_response=FileManager::saveFile(
+        //         $request->file('avatar'),
+        //         'storage/Admins',
+        //         ['png','jpg','jpeg','gif']
+        //     );
+        //     if(isset($image_response['result']) && !$image_response['result'])
+        //     {
+        //         return back()->with('warning',$image_response['message']);
+        //     }
 
-            $old_file=$row->avatar;
-            FileManager::deleteFile($old_file);  
+        //     $old_file=$row->avatar;
+        //     FileManager::deleteFile($old_file);  
             
-            $row->avatar = $image_response['filename'];
-            $row->save();
-        }
+        //     $row->avatar = $image_response['filename'];
+        //     $row->save();
+        // }
 
         $row->save();
 

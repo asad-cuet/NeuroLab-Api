@@ -50,13 +50,11 @@
                     <thead>
                         <tr>
                             <th scope="col">#</th>
-                            <th>{{ __('field.avatar') }}</th>
+                            {{-- <th>{{ __('field.avatar') }}</th> --}}
                             <th>{{ __('field.name') }}</th>
                             <th>{{ __('field.email') }}</th>
-                            <th>{{ __('field.phone') }}</th>
-                            <th>Login</th>
-                            <th>Logout</th>
-                            <th>{{ __('field.is_active') }}</th>
+                            {{-- <th>{{ __('field.phone') }}</th> --}}
+                            <th>Is Admin</th>
                             <th>{{ __('column.action') }}</th>
                         </tr>
                     </thead>
@@ -68,39 +66,32 @@
                             @foreach ($data as $row)
                             <tr>
                                 <td>{{ $serial }}</td>
-                                <td>
+                                {{-- <td>
                                     <div class="trk-item d-flex gap-2">
                                         <div class="trk-thumb thumb-md">
                                             <img src="@if ($row->avatar != '') {{ asset($row->avatar) }} @else {{ asset(avatarUrl()) }} @endif"
                                                 alt="avatar">
                                         </div>
                                     </div>
-                                </td>
+                                </td> --}}
                                 <td>{{ $row->name }}</td>
                                 <td>{{ $row->email }}</td>
-                                <td>{{ $row->phone }}</td>
-                                <td><a href="{{ route('admin.users.frontend.login', $row->id) }}" target="_blank" class="btn btn-exsm btn-tertiary">Login</a></td>
-                                <td>
-                                    <button onclick="openLogoutModal({{$row->id}})"
-                                        class="btn btn-exsm btn-danger">
-                                        Logout
-                                    </button>
-                                </td>
+                                {{-- <td>{{ $row->phone }}</td> --}}
                                 <td>
                                     <div class="form-check form-switch form-switch-lg">
-                                        <input type="checkbox" name="is_active" value="{{ $row->id }}"
+                                        <input type="checkbox" name="is_admin" value="{{ $row->id }}"
                                             onclick="toggleSwitchStatus(this,'users');" class="form-check-input"
-                                            @if ($row->is_active == 1) checked @endif>
+                                            @if ($row->is_admin == 1) checked @endif>
                                     </div>
                                 </td>
                                 <td>
                                     <ul class="trk-action__list">
-                                        <li class="trk-action">
+                                        {{-- <li class="trk-action">
                                             <a href="{{ route('admin.users.show', $row->id) }}"
                                                 class="trk-action__item trk-action__item--success">
                                                 <i class="lni lni-eye"></i>
                                             </a>
-                                        </li>
+                                        </li> --}}
     
                                         @can('user-update')
                                             <li class="trk-action">

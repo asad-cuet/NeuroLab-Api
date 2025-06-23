@@ -19,7 +19,7 @@
 
                 <div class="header__actions">
                     <!-- language start -->
-                    <div class="header__language ml-15">
+                    {{-- <div class="header__language ml-15">
                         <button class="dropdown-toggle flag-toggle" type="button" id="language"
                             data-bs-toggle="dropdown" aria-expanded="false">
                             <img src="{{ asset(currentLangFlag()) }}" alt="country icon" />
@@ -80,7 +80,7 @@
                                 </a>
                             </li>
                         </ul>
-                    </div>
+                    </div> --}}
                     <!-- Language end -->
 
                     <!-- notification start, temporay comment -->

@@ -53,7 +53,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-md-6">
+                                {{-- <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="form-label" for="phone">{{ __('field.phone') }}
                                             <span>&#x002A;</span></label>
@@ -65,7 +65,7 @@
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
                                     </div>
-                                </div>
+                                </div> --}}
 
                                 <div class="col-md-6">
                                     <div class="form-group">
@@ -94,7 +94,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-md-6">
+                                {{-- <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="form-label" for="avatar">{{ __('field.avatar') }}</label>
                                         <input type="file" class="form-control @error('avatar') is-invalid @enderror"
@@ -103,7 +103,7 @@
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
                                     </div>
-                                </div>
+                                </div> --}}
                             </div>
                             <div class="row">
                                 <div class="col-lg-10">

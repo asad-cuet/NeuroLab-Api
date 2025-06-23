@@ -52,7 +52,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-md-6">
+                                {{-- <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="form-label" for="phone">{{ __('field.phone') }}
                                             <span>&#x002A;</span></label>
@@ -64,7 +64,7 @@
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
                                     </div>
-                                </div>
+                                </div> --}}
 
                                 <div class="col-md-6">
                                     <div class="form-group">
@@ -81,14 +81,14 @@
                                         <label class="form-label" for="confirm_password">{{ __('field.confirm_password') }}</label>
                                         <input type="password"
                                             class="form-control @error('confirm_password') is-invalid @enderror"
-                                            id="confirm_password" name="password" placeholder="Enter Confirm Password">
+                                            id="confirm_password" name="confirm_password" placeholder="Enter Confirm Password">
                                         @error('confirm_password')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
                                     </div>
                                 </div>
 
-                                <div class="col-md-6">
+                                {{-- <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="form-label" for="avatar">{{ __('field.avatar') }}</label>
                                         <input type="file" class="form-control @error('avatar') is-invalid @enderror"
@@ -97,7 +97,7 @@
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
                                     </div>
-                                </div>
+                                </div> --}}
                             </div>
                             <div class="row">
                                 <div class="col-lg-10">

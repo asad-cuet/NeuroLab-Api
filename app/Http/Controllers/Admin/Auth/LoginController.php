@@ -32,7 +32,7 @@ class LoginController extends Controller
         // Attempt to log the user in
         if (Auth::guard('admin')->attempt(['email' => $request->email, 'password' => $request->password], $request->remember)) 
         {
-            return redirect()->route('admin.dashboard');
+            return redirect()->route('admin.users.index');
         } 
         else 
         {
